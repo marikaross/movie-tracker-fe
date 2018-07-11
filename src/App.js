@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { apiKey } from './apiKey';
 import { moviesCleaner } from './helper';
-
+import { MoviesContainer } from './containers/MoviesContainer.js';
+import * as actions from './actions';
 import './App.css';
 
-class App extends Component {
+export class App extends Component {
 
   fetchMovieInfo = () => {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018`;
@@ -21,10 +23,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        hellksjdfklj aslkj
+        <MoviesContainer />
       </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  addMovies: () => dispatch(actions.addMovies())
+})
+
+export default connect(null, mapDispatchToProps)(App);
