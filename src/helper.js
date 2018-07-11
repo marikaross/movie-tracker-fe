@@ -1,6 +1,5 @@
 export const moviesCleaner = (movies) => {
-
-  const cleanMovies = movies.results.map( movie => {
+  return movies.results.map( movie => {
     return {
       id: movie.id,
       title: movie.title,
@@ -8,9 +7,9 @@ export const moviesCleaner = (movies) => {
       releaseDate: movie.release_date,
       voteAverage: movie.vote_average,
       overview: movie.overview
-    }
+    };
   });
 
-  
-  
-}
+
+
+};
