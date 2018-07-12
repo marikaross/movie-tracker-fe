@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { apiKey } from './apiKey';
-import { moviesCleaner } from './helper';
+import { moviesCleaner } from './helper.js';
 import MoviesContainer from './containers/MoviesContainer.js';
 import { addMovies } from './actions';
+import { SignIn } from './containers/SignIn.js';
+import { SignUp } from './containers/SignUp.js';
 import './App.css';
 
 export class App extends Component {
@@ -25,6 +28,8 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
+        <SignUp />
+        <SignIn />
         <MoviesContainer />
       </div>
     );
