@@ -1,4 +1,5 @@
 export const moviesCleaner = (movies) => {
+  
   return movies.results.map( movie => {
     return {
       id: movie.id,
@@ -9,7 +10,5 @@ export const moviesCleaner = (movies) => {
       overview: movie.overview
     };
   });
-
-
 
 };

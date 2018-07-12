@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 
-export class SignIn extends Component {
+export class SignUp extends Component {
   constructor(props) {
     super(props)
     this.state={
+      name: '',
       email: '',
       password: ''
     }
@@ -20,7 +20,7 @@ export class SignIn extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const url = 'http://localhost:3000/api/users/';
+    const url = 'http://localhost:3000/api/users/new';
     const data = this.state;
 
     const response = await fetch(url, {
@@ -36,12 +36,13 @@ export class SignIn extends Component {
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor='email'>E-Mail</label>
+      <form className='sign-up' onSubmit={this.handleSubmit}>
+        <label htmlFor='name'>Name:</label>
+        <input id='name' type='text' onChange={this.handleChange}/>
+        <label htmlFor='email'>E-Mail:</label>
         <input id= 'email' type='email' onChange={this.handleChange}/>
         <label htmlFor='password'>Password</label>
         <input id='password' type='password' onChange={this.handleChange}/>
-        <button>Sign In</button>
         <button onClick={this.showSignUp}>Sign Up</button>
       </form>
     );
