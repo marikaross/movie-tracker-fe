@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -42,7 +43,7 @@ export class SignIn extends Component {
         <label htmlFor='password'>Password</label>
         <input id='password' type='password' onChange={this.handleChange}/>
         <button>Sign In</button>
-        <button onClick={this.showSignUp}>Sign Up</button>
+        <button>Sign Up</button>
       </form>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Route, NavLink, Link } from 'react-router-dom';
 import { apiKey } from './apiKey';
 import { moviesCleaner } from './helper.js';
 import MoviesContainer from './containers/MoviesContainer.js';
@@ -28,8 +28,10 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <SignUp />
-        <SignIn />
+        <Route path='/login' component={SignIn}> <button>Sign In</button></Route>
+        <Route path='/sign-up' component={SignUp}><button>Sign Up</button></Route>
+     {/*   <SignUp />
+        <SignIn />*/}
         <MoviesContainer />
       </div>
     );
