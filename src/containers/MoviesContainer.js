@@ -4,13 +4,11 @@ import { MovieCard } from '../components/MovieCard.js';
 
 
 export const MoviesContainer = (props) => {
-  const cards = () => {
-    return props.movies.map(movie => <MovieCard movie={movie}/>)
-  }
+  const cards = props.movies.map(movie => <MovieCard movie={movie} key={movie.id} />)
 
   return (
     <div>
-      {cards()}
+      {cards}
     </div>
     )
 }
