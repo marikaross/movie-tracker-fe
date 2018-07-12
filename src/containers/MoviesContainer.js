@@ -3,17 +3,14 @@ import { connect } from 'react-redux';
 import { MovieCard } from '../components/MovieCard.js';
 
 
-// const {movies, showAll } = this.props;
-console.log(this.props)
-
-export const MoviesContainer = (movies, showAll) => {
-  // const cards = () => {
-  //   return movies.map(movie => <Card movie={movie}/>)
-  // }
+export const MoviesContainer = (props) => {
+  const cards = () => {
+    return props.movies.map(movie => <MovieCard movie={movie}/>)
+  }
 
   return (
     <div>
-      hahahhahaha
+      {cards()}
     </div>
     )
 }
