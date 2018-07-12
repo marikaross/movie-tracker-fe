@@ -3,11 +3,12 @@ export const addMovies = (movies) => ({
   movies
 });
 
-export const toggleFav = (id) => {
+export const toggleFav = (id) => ({
   type: "TOGGLE_FAV",
   id
-};
+});
 
-export const toggleFilter = () => {
+export const toggleFilter = () => ({
   type: "TOGGLE_FILTER"
-};
+
+});
