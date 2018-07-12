@@ -1,12 +1,20 @@
 import React from 'react';
-// import Redux from 'redux';
 import { connect } from 'react-redux';
-import { toggleFilter } from '../actions'
+import { MovieCard } from '../components/MovieCard.js';
 
-export const MoviesContainer = ({movies, showAll}) => {
+
+// const {movies, showAll } = this.props;
+console.log(this.props)
+
+export const MoviesContainer = (movies, showAll) => {
+  // const cards = () => {
+  //   return movies.map(movie => <Card movie={movie}/>)
+  // }
 
   return (
-    <h1> Heeeeey </h1>
+    <div>
+      hahahhahaha
+    </div>
     )
 }
 
@@ -15,10 +23,5 @@ const mapStateToProps = (state) => ({
   showAll: state.showAll
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleFilter: () => dispatch(toggleFilter())
-})
 
-
-
-export default connect(mapStateToProps,  mapDispatchToProps)(MoviesContainer);
+export default connect(mapStateToProps)(MoviesContainer);

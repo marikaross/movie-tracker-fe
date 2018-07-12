@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { apiKey } from './apiKey';
 import { moviesCleaner } from './helper';
-import { MoviesContainer } from './containers/MoviesContainer.js';
-import * as actions from './actions';
+import MoviesContainer from './containers/MoviesContainer.js';
+import { addMovies } from './actions';
 import './App.css';
 
 export class App extends Component {
@@ -13,7 +13,9 @@ export class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(movies => moviesCleaner(movies))
+      .then(cleanMovies => this.props.addRecentMovies(cleanMovies))
       .catch(error => error.message);
+    
   }
 
   componentDidMount() {
@@ -30,7 +32,7 @@ export class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addMovies: () => dispatch(actions.addMovies())
+  addRecentMovies: (movies) => dispatch(addMovies(movies))
 })
 
 export default connect(null, mapDispatchToProps)(App);
