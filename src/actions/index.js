@@ -16,16 +16,16 @@ export const toggleFilter = () => ({
 export const loginUser = (user) => ({
   type: "LOGIN_USER",
   user
-})
+});
 
 export const signUpUser = (name, email, password) => ({
   type: "SIGN_UP_USER",
   name,
   email,
   password
-})
+});
 
 export const logOut = () => ({
   type: "LOG-OUT"
+});
 
-})

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, NavLink, Link } from 'react-router-dom';
+import { Route, NavLink, Link, withRouter } from 'react-router-dom';
 import { apiKey } from './apiKey';
 import { moviesCleaner } from './helper.js';
 import MoviesContainer from './containers/MoviesContainer.js';
 import { addMovies } from './actions';
 import { SignIn } from './containers/SignIn.js';
 import { SignUp } from './containers/SignUp.js';
+import { Header } from './containers/Header.js';
 import './App.css';
 
 export class App extends Component {
@@ -28,11 +29,10 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path='/login' component={SignIn}> <button>Sign In</button></Route>
-        <Route path='/sign-up' component={SignUp}><button>Sign Up</button></Route>
-     {/*   <SignUp />
-        <SignIn />*/}
-        <MoviesContainer />
+        <Header />
+        <Route exact path='/' component={MoviesContainer} />
+        <Route exact path='/sign-up' component={SignUp} />
+        <Route exact path='/login' component={SignIn} />
       </div>
     );
   }
@@ -42,4 +42,4 @@ const mapDispatchToProps = (dispatch) => ({
   addRecentMovies: (movies) => dispatch(addMovies(movies))
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default withRouter(connect(null, mapDispatchToProps)(App));
