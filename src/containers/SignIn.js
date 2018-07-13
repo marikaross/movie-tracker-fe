@@ -22,7 +22,7 @@ export class SignIn extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    try{
+    // try{
       const url = 'http://localhost:3000/api/users/';
       const data = this.state;
 
@@ -34,13 +34,14 @@ export class SignIn extends Component {
         }
       })
       const user = await response.json();
-      console.log(this.props)
-      this.props.loginUser(user.data);
+      // debugger
+      console.log(this.props.user)
+      this.props.login(user.data);
 
-    } 
-    catch (error) {
-      //redirect to sign up
-    }
+    // } 
+    // catch (error) {
+    //   //redirect to sign up
+    // }
   }
 
   render() {
@@ -57,8 +58,11 @@ export class SignIn extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  user: state.user
+})
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: (user) => dispatch(loginUser(user))
+  login: (user) => dispatch(loginUser(user))
 })
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

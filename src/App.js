@@ -5,8 +5,8 @@ import { apiKey } from './apiKey';
 import { moviesCleaner } from './helper.js';
 import MoviesContainer from './containers/MoviesContainer.js';
 import { addMovies } from './actions';
-import { SignIn } from './containers/SignIn.js';
-import { SignUp } from './containers/SignUp.js';
+import SignIn from './containers/SignIn.js';
+import SignUp from './containers/SignUp.js';
 import { Header } from './containers/Header.js';
 import './App.css';
 

@@ -7,5 +7,5 @@ import { userReducer } from './userReducer.js';
 export const rootReducer = combineReducers({
   movies: movieReducer,
   showAllMovies: filterReducer,
-  currentUser: userReducer
+  user: userReducer
 })
