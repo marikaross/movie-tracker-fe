@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, withRouter } from 'react-router-dom';
+import {Link, withRouter, Redirect} from 'react-router-dom';
 import { loginUser } from '../actions';
 
 import { connect } from 'react-redux';
@@ -9,7 +9,8 @@ export class SignIn extends Component {
     super(props)
     this.state={
       email: '',
-      password: ''
+      password: '',
+      hasError: false
     }
   }
 
@@ -20,28 +21,33 @@ export class SignIn extends Component {
     });
   }
 
+
   handleSubmit = async (event) => {
     event.preventDefault();
-    // try{
+    try{
       const url = 'http://localhost:3000/api/users/';
-      const data = this.state;
+      const {email, password} = this.state;
 
       const response = await fetch(url, {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify({email, password}),
         headers:{
           'Content-Type': 'application/json'
         }
       })
       const user = await response.json();
-      // debugger
-      console.log(this.props.user)
       this.props.login(user.data);
+    } 
+    catch (error) {
+      this.setState({hasError: true})
+    }
+  }
 
-    // } 
-    // catch (error) {
-    //   //redirect to sign up
-    // }
+  isLoggedIn = () => {
+    return this.state.hasError ? 
+    <h5>email and password do not match</h5> :
+    <div></div>
+    
   }
 
   render() {
@@ -53,6 +59,7 @@ export class SignIn extends Component {
         <input id='password' type='password' onChange={this.handleChange}/>
         <button>Sign In</button>
         <button>Sign Up</button>
+        {this.isLoggedIn()}
       </form>
     );
   }
