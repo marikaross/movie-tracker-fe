@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { signUp } from '../api-calls';
+import { loginUser } from '../actions';
+
 
 export class SignUp extends Component {
   constructor(props) {
@@ -7,7 +10,8 @@ export class SignUp extends Component {
     this.state={
       name: '',
       email: '',
-      password: ''
+      password: '',
+      hasError: false
     }
   }
 
@@ -20,18 +24,20 @@ export class SignUp extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const url = 'http://localhost:3000/api/users/new';
-    const data = this.state;
+    const reply = await signUp(this.state)
+    
+    if (reply.id) {
+      this.props.login(this.state); 
+      this.setState({ hasError: false })    
+    } else {
+      this.setState({ hasError: true })
+    }
+  }
 
-    const response = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    })
-    const user = await response.json();
-    console.log(user);
+  signUpSuccess = () => {
+    return this.state.hasError ? 
+    <h5>email unavailable</h5> :
+    <div>Welcome {this.props.user.name}</div>
   }
 
   render() {
@@ -44,7 +50,17 @@ export class SignUp extends Component {
         <label htmlFor='password'>Password</label>
         <input id='password' type='password' onChange={this.handleChange}/>
         <button onClick={this.showSignUp}>Sign Up</button>
+        {this.signUpSuccess}
       </form>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+const mapDispatchToProps = (dispatch) => ({
+  login: (user) => dispatch(loginUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
