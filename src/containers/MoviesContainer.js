@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { MovieCard } from '../components/MovieCard.js';
 import { NavLink } from 'react-router-dom';
+import { postFavorite } from '../api-calls.js';
 
 export const MoviesContainer = (props) => {
-  const addFavorite = (id, movie) => {
-    const newFavorite = {id: id, ...movie}
+  const addFavorite = async (id, movie) => {
+    const newFavorite = {id: id, ...movie};
+    const newFavId = await postFavorite(newFavorite);
+    console.log(newFavId)
   }
 
   const cards = props.movies.map(movie => (

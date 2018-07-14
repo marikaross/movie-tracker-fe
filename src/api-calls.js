@@ -43,10 +43,43 @@ export const signUp = async (state) => {
       headers:{
         'Content-Type': 'application/json'
       }
-    })
+    });
     return await response.json();
   } 
   catch (error) {
-    return error.false;
+    return false;
   }
 }
+
+export const postFavorite = async (favorite) => {
+  try {
+    const url = 'http://localhost:3000/api/users/favorites/new';
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(favorite),
+      headers: {
+        'Content-Type': 'application/json'
+      } 
+    });
+    return await response.json();
+  }
+  catch (error) {
+    return false;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
