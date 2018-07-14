@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { MovieCard } from '../components/MovieCard.js';
+import {NavLink} from 'react-router-dom';
 
 
 export const MoviesContainer = (props) => {
