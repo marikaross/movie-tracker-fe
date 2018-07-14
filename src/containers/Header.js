@@ -1,11 +1,12 @@
 import React from 'react';
 import {Link, NavLink, withRouter} from 'react-router-dom';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 export const Header = (props) => {
 
   return (
-    props.userName ? 
+    props.userName 
+    ? 
     <div>
       <h2>Welcome {props.userName}! </h2>
       <Link to='/favorites'>Show Favorites</Link> 
@@ -16,16 +17,11 @@ export const Header = (props) => {
       <NavLink to='/login'>Sign In</NavLink>
       <NavLink to='/sign-up'>Sign Up</NavLink>
     </div>
-
-    )
+    );
   }
-
-
-
-
 
 const mapStateToProps = (state) => ({
   user: this.state.userName
-})
+});
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps)(Header);
