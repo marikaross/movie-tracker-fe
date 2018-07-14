@@ -11,7 +11,7 @@ export const getMovies = async () => {
   }
 }
 
-export const signIn = async (state) => {
+export const logIn = async (state) => {
   try{
     const url = 'http://localhost:3000/api/users/';
     const {email, password} = state;
@@ -29,5 +29,24 @@ export const signIn = async (state) => {
   } 
   catch (error) {
     return false;
+  }
+}
+
+export const signUp = async (state) => {
+  try{
+    const url = 'http://localhost:3000/api/users/new';
+    const {name, email, password} = state;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({name, email, password}),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    return await response.json();
+  } 
+  catch (error) {
+    return error.false;
   }
 }

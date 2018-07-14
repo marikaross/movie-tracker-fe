@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link, withRouter, Redirect, Route} from 'react-router-dom';
 import { loginUser } from '../actions';
 import { connect } from 'react-redux';
-import { signIn } from '../api-calls';
+import { logIn } from '../api-calls';
 
 export class SignIn extends Component {
   constructor(props) {
@@ -23,8 +23,8 @@ export class SignIn extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const user = await signIn(this.state);
-    console.log(user);
+    const user = await logIn(this.state);
+    
     if (user) {
       this.props.login(user);
       this.setState({ hasError: false })    
