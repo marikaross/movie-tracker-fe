@@ -6,7 +6,7 @@ import { postFavorite } from '../api-calls.js';
 
 export const MoviesContainer = (props) => {
   const addFavorite = async (id, movie) => {
-    const newFavorite = {id: id, ...movie};
+    const newFavorite = {user_id: id, ...movie};
     const newFavId = await postFavorite(newFavorite);
     console.log(newFavId)
   }

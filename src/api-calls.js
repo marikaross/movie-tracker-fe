@@ -52,6 +52,7 @@ export const signUp = async (state) => {
 }
 
 export const postFavorite = async (favorite) => {
+  console.log(favorite)
   try {
     const url = 'http://localhost:3000/api/users/favorites/new';
     const response = await fetch(url, {
