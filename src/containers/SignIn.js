@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Link, withRouter, Redirect} from 'react-router-dom';
+import {Link, withRouter, Redirect, Route} from 'react-router-dom';
 import { loginUser } from '../actions';
-
 import { connect } from 'react-redux';
+import { signIn } from '../api-calls';
 
 export class SignIn extends Component {
   constructor(props) {
@@ -21,25 +21,15 @@ export class SignIn extends Component {
     });
   }
 
-
   handleSubmit = async (event) => {
     event.preventDefault();
-    try{
-      const url = 'http://localhost:3000/api/users/';
-      const {email, password} = this.state;
-
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({email, password}),
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      })
-      const user = await response.json();
-      this.props.login(user.data);
-    } 
-    catch (error) {
-      this.setState({hasError: true})
+    const user = await signIn(this.state);
+    console.log(user);
+    if (user) {
+      this.props.login(user);
+      this.setState({ hasError: false })    
+    } else {
+      this.setState({ hasError: true })
     }
   }
 
@@ -47,7 +37,6 @@ export class SignIn extends Component {
     return this.state.hasError ? 
     <h5>email and password do not match</h5> :
     <div></div>
-    
   }
 
   render() {
