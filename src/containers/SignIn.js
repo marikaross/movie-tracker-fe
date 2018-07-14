@@ -44,7 +44,6 @@ export class SignIn extends Component {
   }
 
   toLogOut = () => {
-    console.log(this.props)
     return this.props.user.name ?
     <button onClick={this.logOutUser}>Log Out</button> :
     <div></div>
