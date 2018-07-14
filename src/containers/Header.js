@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 export const Header = (props) => {
 
   return (
-  
     props.userName ? 
     <div>
       <h2>Welcome {props.userName}! </h2>
@@ -17,8 +16,6 @@ export const Header = (props) => {
       <NavLink to='/login'>Sign In</NavLink>
       <NavLink to='/sign-up'>Sign Up</NavLink>
     </div>
-      
-  
 
     )
   }
