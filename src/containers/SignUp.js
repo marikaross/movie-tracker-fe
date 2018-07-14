@@ -37,7 +37,9 @@ export class SignUp extends Component {
   signUpSuccess = () => {
     return this.state.hasError ? 
     <h5>email unavailable</h5> :
-    <div>Welcome {this.props.user.name}</div>
+    this.props.user.name ?
+    <div>Welcome {this.props.user.name}</div> :
+    <div></div>
   }
 
   render() {
@@ -46,11 +48,11 @@ export class SignUp extends Component {
         <label htmlFor='name'>Name:</label>
         <input id='name' name='name' onChange={this.handleChange}/>
         <label htmlFor='email'>E-Mail:</label>
-        <input id= 'email' name='email' onChange={this.handleChange}/>
+        <input id= 'email' type='email' name='email' onChange={this.handleChange}/>
         <label htmlFor='password'>Password</label>
-        <input id='password' name='password' onChange={this.handleChange}/>
+        <input id='password' type='password' name='password' onChange={this.handleChange}/>
         <button onClick={this.showSignUp}>Sign Up</button>
-        {this.signUpSuccess}
+        {this.signUpSuccess()}
       </form>
     );
   }
