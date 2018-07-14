@@ -47,7 +47,6 @@ export class SignIn extends Component {
         <label htmlFor='password'>Password</label>
         <input id='password' type='password' onChange={this.handleChange}/>
         <button>Sign In</button>
-        <button>Sign Up</button>
         {this.isLoggedIn()}
       </form>
     );
