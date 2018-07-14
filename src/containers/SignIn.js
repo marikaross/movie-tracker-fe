@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link, withRouter, Redirect, Route} from 'react-router-dom';
-import { loginUser } from '../actions';
+import { loginUser, logOutUser } from '../actions';
 import { connect } from 'react-redux';
 import { logIn } from '../api-calls';
 
@@ -39,6 +39,17 @@ export class SignIn extends Component {
     <div></div>
   }
 
+  logOutUser = () => {
+    this.props.logOutUser()
+  }
+
+  toLogOut = () => {
+    console.log(this.props)
+    return this.props.user.name ?
+    <button onClick={this.logOutUser}>Log Out</button> :
+    <div></div>
+  }
+
   render() {
     return(
       <form onSubmit={this.handleSubmit}>
@@ -47,8 +58,8 @@ export class SignIn extends Component {
         <label htmlFor='password'>Password</label>
         <input id='password' type='password' onChange={this.handleChange}/>
         <button>Sign In</button>
-        <button>Sign Up</button>
         {this.isLoggedIn()}
+        {this.toLogOut()}
       </form>
     );
   }
@@ -58,7 +69,8 @@ const mapStateToProps = (state) => ({
   user: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
-  login: (user) => dispatch(loginUser(user))
+  login: (user) => dispatch(loginUser(user)),
+  logOutUser: () => dispatch(logOutUser())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

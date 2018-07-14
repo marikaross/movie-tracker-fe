@@ -16,9 +16,9 @@ export class SignUp extends Component {
   }
 
   handleChange = (input) => {
-    const { type, value } = input.target
+    const { name, value } = input.target
     this.setState({
-      [type]: value
+      [name]: value
     });
   }
 
@@ -37,20 +37,22 @@ export class SignUp extends Component {
   signUpSuccess = () => {
     return this.state.hasError ? 
     <h5>email unavailable</h5> :
-    <div>Welcome {this.props.user.name}</div>
+    this.props.user.name ?
+    <div>Welcome {this.props.user.name}</div> :
+    <div></div>
   }
 
   render() {
     return(
       <form className='sign-up' onSubmit={this.handleSubmit}>
         <label htmlFor='name'>Name:</label>
-        <input id='name' type='text' onChange={this.handleChange}/>
+        <input id='name' name='name' onChange={this.handleChange}/>
         <label htmlFor='email'>E-Mail:</label>
-        <input id= 'email' type='email' onChange={this.handleChange}/>
+        <input id= 'email' type='email' name='email' onChange={this.handleChange}/>
         <label htmlFor='password'>Password</label>
-        <input id='password' type='password' onChange={this.handleChange}/>
+        <input id='password' type='password' name='password' onChange={this.handleChange}/>
         <button onClick={this.showSignUp}>Sign Up</button>
-        {this.signUpSuccess}
+        {this.signUpSuccess()}
       </form>
     );
   }

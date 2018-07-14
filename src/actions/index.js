@@ -25,7 +25,6 @@ export const signUpUser = (name, email, password) => ({
   password
 });
 
-export const logOut = () => ({
-  type: "LOG-OUT"
+export const logOutUser = () => ({
+  type: "LOG_OUT_USER"
 });
-
