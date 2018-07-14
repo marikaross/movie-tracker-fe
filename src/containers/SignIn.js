@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Link, withRouter, Redirect, Route} from 'react-router-dom';
-import { loginUser, logOutUser } from '../actions';
+import { loginUser, logOutUser, addFavorites } from '../actions';
 import { connect } from 'react-redux';
-import { logIn } from '../api-calls';
+import { logIn, getFavorites } from '../api-calls';
 
 export class SignIn extends Component {
   constructor(props) {
@@ -27,7 +27,10 @@ export class SignIn extends Component {
     
     if (user) {
       this.props.login(user);
-      this.setState({ hasError: false })    
+      this.setState({ hasError: false })
+      console.log(user)
+      const favorites = await getFavorites(user.id); 
+      this.props.addFavorites(favorites.data)   
     } else {
       this.setState({ hasError: true })
     }
@@ -69,7 +72,8 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = (dispatch) => ({
   login: (user) => dispatch(loginUser(user)),
-  logOutUser: () => dispatch(logOutUser())
+  logOutUser: () => dispatch(logOutUser()),
+  addFavorites: (id) => dispatch(addFavorites(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

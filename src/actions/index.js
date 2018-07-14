@@ -28,3 +28,8 @@ export const signUpUser = (name, email, password) => ({
 export const logOutUser = () => ({
   type: "LOG_OUT_USER"
 });
+
+export const addFavorites = (favorites) => ({
+  type: "ADD_FAVORITES",
+  favorites
+});
