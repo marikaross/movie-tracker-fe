@@ -34,7 +34,7 @@ export const deleteLocalFav = (movieId) => ({
   movieId
 });
 
-export const addLocalFav = (movie) => {
+export const addLocalFav = (movie) => ({
   type: "ADD_LOCAL_FAV",
   movie
-}
+})

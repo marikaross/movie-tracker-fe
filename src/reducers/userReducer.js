@@ -7,7 +7,7 @@ export const userReducer = (state={}, action) => {
     case "POPULATE_USER_FAVS":
       return {...state, favorites: action.favorites};
     case "ADD_LOCAL_FAV":
-      const newFavs = [state.favorites, ...action.movie]
+      const newFavs = [...state.favorites, action.movie]
       return {...state, favorites: newFavs};
     case "DELETE_LOCAL_FAV":
       const updatedFavs = state.favorites.filter(movie => movie.movie_id !== action.movieId)

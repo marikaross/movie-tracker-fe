@@ -15,9 +15,13 @@ export const MoviesContainer = (props) => {
     } else { 
     const newFavorite = {user_id: userId, ...movie};
     const newFavId = await postFavorite(newFavorite);
-
+    addFav(movie)
     } 
    
+  }
+
+  const addFav = (movie) => {
+    props.addLocalFav(movie)
   }
 
 
