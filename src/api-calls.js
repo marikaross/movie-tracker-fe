@@ -91,7 +91,6 @@ export const deleteDatabaseFav = async (userId, movieId) => {
         'Content-Type': 'application-json'
       }
     });
-    console.log(await response.json())
     return await response.json()
   }
   catch(error) {
