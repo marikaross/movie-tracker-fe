@@ -59,7 +59,7 @@ describe ('logIn', () => {
     expect(result).toEqual(expected)
   })
 
-  it('should return an error if the fetch fails', async() => {
+  it('should return an error if the fetch fails', async () => {
     window.fetch = jest.fn().mockImplementation(() => Promise.reject(Error(false)))
     const expected = false
     const result = await logIn(url)
@@ -68,4 +68,43 @@ describe ('logIn', () => {
 
 })
 
-describe ('signUp', )
+describe ('signUp', () => {
+  let url
+  let mockOptionsObject
+
+  beforeEach(() => {
+    url = 'http://localhost:3000/api/users/new';
+    mockOptionsObject = {
+      method: 'POST',
+      body: JSON.stringify(mockUserData.data),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    };
+
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 200, json: () => Promise.resolve(mockUserData.data) }))
+  })
+
+    it('should be called with the correct parameters', async () => {
+      await signUp(url, mockOptionsObject);
+      expect(window.fetch).toHaveBeenCalledWith(url, mockOptionsObject)
+    })
+
+    it.only('should return an error if the fetch', async () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.reject(Error(false)))
+      const expected = false
+      const result = await signUp(url, mockOptionsObject)
+      expect(result).toEqual(expected)
+
+    })
+})
+
+describe ('postFavorite', () => {
+  let url
+  let mockOptionsObject
+
+  beforeEach(() => {
+    url = 'http://localhost:3000/api/users/favorites/new'
+    mockOptionsObject
+  })
+})
