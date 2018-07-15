@@ -430,3 +430,14 @@ export const mockUserData = {
     ],
     "message": "Retrieved All Users"
   }
+
+  export const mockFavoriteData = {
+    user_id: 1, 
+    movie_id: 400155, 
+    title: "Hotel Transylvania 3: Summer Vacation", 
+    poster_path: "/gjAFM4xhA5vyLxxKMz38ujlUfDL.jpg", 
+    release_date: "2018-07-12",
+    overview: "Dracula, Mavis, Johnny and the rest of the Drac Pack take a vacation on a luxury Monster Cruise Ship, where Dracula falls in love with the ship's captain, Ericka, who's secretly a descendant of Abraham Van Helsing, the notorious monster slayer.",
+    release_date: "2018-07-12",
+    vote_average: 7.5
+  }
