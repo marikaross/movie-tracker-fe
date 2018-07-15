@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link, withRouter, Redirect, Route} from 'react-router-dom';
-import { loginUser, logOutUser, addFavorites } from '../actions';
+import { loginUser, logOutUser, populateUserFavs} from '../actions';
 import { connect } from 'react-redux';
 import { logIn, getFavorites } from '../api-calls';
 
@@ -21,6 +21,7 @@ export class SignIn extends Component {
     });
   }
 
+
   handleSubmit = async (event) => {
     event.preventDefault();
     const user = await logIn(this.state);
@@ -28,9 +29,8 @@ export class SignIn extends Component {
     if (user) {
       this.props.login(user);
       this.setState({ hasError: false })
-      console.log(user)
       const favorites = await getFavorites(user.id); 
-      this.props.addFavorites(favorites.data)   
+      this.props.populateUserFavs(favorites.data)   
     } else {
       this.setState({ hasError: true })
     }
@@ -73,7 +73,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   login: (user) => dispatch(loginUser(user)),
   logOutUser: () => dispatch(logOutUser()),
-  addFavorites: (id) => dispatch(addFavorites(id))
+  populateUserFavs: (id) => dispatch(populateUserFavs(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -2,13 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { MovieCard } from '../components/MovieCard.js';
 import { NavLink } from 'react-router-dom';
-import { postFavorite } from '../api-calls.js';
+import { postFavorite, deleteDatabaseFav } from '../api-calls.js';
+import { addLocalFav, deleteLocalFav } from '../actions';
 
 export const MoviesContainer = (props) => {
-  const addFavorite = async (id, movie) => {
-    const newFavorite = {user_id: id, ...movie};
+
+
+  const toggleFav = async (userId, movie) => {
+    if (isDuplicate(movie.movie_id)) {  
+      props.deleteLocalFav(movie.movie_id)
+      const deleted = await deleteDatabaseFav(userId, movie.movie_id)
+    } else { 
+    const newFavorite = {user_id: userId, ...movie};
     const newFavId = await postFavorite(newFavorite);
-    console.log(newFavId)
+
+    } 
+   
+  }
+
+
+  const isDuplicate = (movieId) => {
+    return props.user.favorites.find(favorite => favorite.movie_id === movieId)
+  
   }
 
   const cards = props.movies.map(movie => (
@@ -16,7 +31,7 @@ export const MoviesContainer = (props) => {
       movie={movie} 
       key={movie.id} 
       userId={props.user.id}
-      addFavorite={addFavorite}
+      toggleFav={toggleFav}
     />)
   );
   return (
@@ -32,4 +47,9 @@ const mapStateToProps = (state) => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(MoviesContainer);
+const mapDispatchToProps = (dispatch) => ({
+  addLocalFav: (movie) => dispatch(addLocalFav(movie)),
+  deleteLocalFav: (movieId) => dispatch(deleteLocalFav(movieId))  
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesContainer);

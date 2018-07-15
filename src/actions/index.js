@@ -3,11 +3,6 @@ export const addMovies = (movies) => ({
   movies
 });
 
-export const toggleFav = (id) => ({
-  type: "TOGGLE_FAV",
-  id
-});
-
 export const toggleFilter = () => ({
   type: "TOGGLE_FILTER"
 
@@ -29,7 +24,17 @@ export const logOutUser = () => ({
   type: "LOG_OUT_USER"
 });
 
-export const addFavorites = (favorites) => ({
-  type: "ADD_FAVORITES",
+export const populateUserFavs = (favorites) => ({
+  type: "POPULATE_USER_FAVS",
   favorites
 });
+
+export const deleteLocalFav = (movieId) => ({
+  type: "DELETE_LOCAL_FAV",
+  movieId
+});
+
+export const addLocalFav = (movie) => {
+  type: "ADD_LOCAL_FAV",
+  movie
+}
