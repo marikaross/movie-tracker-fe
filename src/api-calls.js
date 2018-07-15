@@ -73,7 +73,6 @@ export const getFavorites = async (userId) => {
     const url = `http://localhost:3000/api/users/${userId}/favorites`;
     const response = await fetch(url);
     return await response.json();
-    console.log(response)
   }
   catch(error) {
     return false;

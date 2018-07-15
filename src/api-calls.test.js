@@ -19,7 +19,7 @@ describe ('getMovies', () => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 200, json: () => Promise.resolve(mockMovieData) }))
   })
 
-  it.only('should call fetch with the correct parameters', async () => {
+  it('should call fetch with the correct parameters', async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018`
     await getMovies();
     expect(window.fetch).toHaveBeenCalledWith(url);
@@ -165,7 +165,7 @@ describe('getFavorites', () => {
   beforeEach(() => {
     userId = 2
     url = `http://localhost:3000/api/users/2/favorites`
-    mockFavorites = = [{
+    mockFavorites = [{
       user_id: 2, 
       movie_id: 400155, 
       title: "Best Movie", 
@@ -201,15 +201,38 @@ describe ('deleteDatabaseFav', () => {
   let url
   let userId
   let movieId
+  let mockOptionsObject
+
 
   beforeEach(() => {
-    userId = 2
-    movieId = 400155
-    url = `http://localhost:3000/api/users/2/favorites/400155`
+      userId = 2
+      movieId = 400155
+      url = `http://localhost:3000/api/users/2/favorites/400155`
+      mockOptionsObject = 
+      {method: 'DELETE', 
+      headers: {'Content-Type': 'application-json'},
+      body: JSON.stringify({user_id: userId, movie_id: movieId})
+    }
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({status: 200, json: () => Promise.resolve({status: "success", message: "1 row was deleted."})}))
   })
 
   it('should call fetch with the correct parameters', async () => {
-    await deleteDatabaseFav
+    await deleteDatabaseFav(userId, movieId)
+    expect(window.fetch).toHaveBeenCalledWith(url, mockOptionsObject)
   })
 
+  it('should return the appropriate data', async () => {
+  const expected = {status: "success", message: "1 row was deleted."}
+  const result = await deleteDatabaseFav(userId, movieId)
+  expect(result).toEqual(expected)
+  })
+
+  it('should throw an error if the fetch fails', async () => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.reject(Error(false)))
+    const result = await deleteDatabaseFav(userId, movieId)
+    const expected = false
+    expect(result).toEqual(expected)
+
+  })
 })
+
