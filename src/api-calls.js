@@ -68,6 +68,37 @@ export const postFavorite = async (favorite) => {
   }
 }
 
+export const getFavorites = async (userId) => {
+  try {
+    const url = `http://localhost:3000/api/users/${userId}/favorites`;
+    const response = await fetch(url);
+    return await response.json();
+  }
+  catch(error) {
+    return false;
+  }
+
+}
+
+export const deleteDatabaseFav = async (userId, movieId) => {
+  try{
+    const url = `http://localhost:3000/api/users/${userId}/favorites/${movieId}`;
+    const response = await fetch(url, {
+      method: 'DELETE',
+      body: JSON.stringify({user_id: userId,
+                            movie_id: movieId}),
+      headers: {
+        'Content-Type': 'application-json'
+      }
+    });
+    console.log(await response.json())
+    return await response.json()
+  }
+  catch(error) {
+    return false;
+  }
+}
+
 
 
 

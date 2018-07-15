@@ -1,8 +1,8 @@
 import React from 'react';
 
-export const MovieCard = ({ movie, userId, addFavorite }) => {
+export const MovieCard = ({ movie, userId, toggleFav }) => {
   const handleClick = () => {
-    addFavorite(userId, movie);
+    toggleFav(userId, movie);
   } 
 
   return(
