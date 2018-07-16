@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, NavLink, Link, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import * as apiCalls from './api-calls.js';
 import { moviesCleaner } from './helper.js';
 import MoviesContainer from './containers/MoviesContainer.js';
@@ -32,6 +34,11 @@ export class App extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   addRecentMovies: (movies) => dispatch(addMovies(movies))
-})
+});
+
+App.propTypes = {
+  addRecentMovies: PropTypes.func
+};
 
 export default withRouter(connect(null, mapDispatchToProps)(App));
+
