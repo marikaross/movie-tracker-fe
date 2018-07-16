@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loginUser, logOutUser, populateUserFavs } from '../actions';
-
+import { Redirect, withRouter, Link } from 'react-router-dom';
+import SignUp from './SignUp'
 import { logIn, getFavorites } from '../api-calls';
 import './SignIn.css';
 
@@ -17,9 +18,9 @@ export class SignIn extends Component {
   }
 
   handleChange = (input) => {
-    const { type, value } = input.target;
+    const { id, value } = input.target;
     this.setState({
-      [type]: value
+      [id]: value
     });
   }
 
@@ -31,7 +32,8 @@ export class SignIn extends Component {
       this.props.login(user);
       this.setState({ hasError: false });
       const favorites = await getFavorites(user.id); 
-      this.props.populateUserFavs(favorites.data);   
+      const favIds = favorites.data.map(fav => fav.movie_id)
+      this.props.populateUserFavs(favIds); 
     } else {
       this.setState({ hasError: true });
     }
@@ -39,7 +41,7 @@ export class SignIn extends Component {
 
   isLoggedIn = () => {
     return this.state.hasError ? 
-      <h5>email and password do not match</h5> :
+      <h5 className="user-message" >email and password do not match</h5> :
       <div></div>;
   }
 
@@ -48,9 +50,7 @@ export class SignIn extends Component {
   }
 
   toLogOut = () => {
-    return this.props.user.name ?
-      <button onClick={this.logOutUser}>Log Out</button> :
-      <div></div>;
+   return this.props.user.name ? <Redirect to='/' /> : <div></div> 
   }
 
   render() {
@@ -69,6 +69,7 @@ export class SignIn extends Component {
           onChange={this.handleChange}
         />
         <button>Sign In</button>
+        <Link to='/signup' component={SignUp}><button>Sign Up</button></Link>
         {this.isLoggedIn()}
         {this.toLogOut()}
       </form>
@@ -93,4 +94,4 @@ SignIn.propTypes = {
   user: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));

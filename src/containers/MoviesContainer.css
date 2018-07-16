@@ -21,3 +21,7 @@
   color: #FFFFFF;
   padding: .5em 1em;
 }
+
+.favorite {
+  box-shadow: 5px 5px chartreuse;
+}

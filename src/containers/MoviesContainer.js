@@ -9,30 +9,40 @@ import './MoviesContainer.css';
 export const MoviesContainer = (props) => {
 
   const toggleFav = async (userId, movie) => {
+    if(!props.user.name) {
+      props.history.push('/login');
+      return null;
+    }
     if (isDuplicate(movie.movie_id)) {  
       props.deleteLocalFav(movie.movie_id);
       const deleted = await deleteDatabaseFav(userId, movie.movie_id);
     } else { 
       const newFavorite = {user_id: userId, ...movie};
       const newFavId = await postFavorite(newFavorite);
-      addFav(movie);
+      addFav(movie.movie_id);
     }
   };
 
-  const addFav = (movie) => {
-    props.addLocalFav(movie);
+  const addFav = (id) => {
+    props.addLocalFav(id);
   };
 
   const isDuplicate = (movieId) => {
-    return props.user.favorites.find(favorite => favorite.movie_id === movieId);
+    return props.user.favorites.find(favoriteId => favoriteId === movieId);
   };
 
+  const isFavorite = (id) => {
+    return props.user.favorites ? 
+    props.user.favorites.includes(id) : null;
+  }
+  
   const cards = props.movies.map(movie => (
     <MovieCard
       movie={movie} 
       key={movie.id} 
       userId={props.user.id}
       toggleFav={toggleFav}
+      isFav={isFavorite(movie.movie_id)}
     />)
   );
   return (
