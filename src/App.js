@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import * as apiCalls from './api-calls.js';
 import { moviesCleaner } from './helper.js';
 import MoviesContainer from './containers/MoviesContainer.js';
@@ -13,7 +12,6 @@ import { Header } from './containers/Header.js';
 import './App.css';
 
 export class App extends Component {
-
   async componentDidMount() {
     const rawMovies =  await apiCalls.getMovies();
     const cleanMovies = moviesCleaner(rawMovies);
@@ -41,4 +39,3 @@ App.propTypes = {
 };
 
 export default withRouter(connect(null, mapDispatchToProps)(App));
-

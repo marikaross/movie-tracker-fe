@@ -4,6 +4,7 @@ import { MovieCard } from '../components/MovieCard.js';
 import { postFavorite, deleteDatabaseFav } from '../api-calls.js';
 import { addLocalFav, deleteLocalFav } from '../actions';
 import PropTypes from 'prop-types';
+import './MoviesContainer.css';
 
 export const MoviesContainer = (props) => {
 
@@ -35,7 +36,7 @@ export const MoviesContainer = (props) => {
     />)
   );
   return (
-    <div>
+    <div className='movie-container'>
       {cards}
     </div>
   );
@@ -56,7 +57,7 @@ MoviesContainer.propTypes = {
   addLocalFav: PropTypes.func,
   deleteLocalFav: PropTypes.func,
   user: PropTypes.object,
-  movies: PropTypes.object
+  movies: PropTypes.array
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesContainer);
