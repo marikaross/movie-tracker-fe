@@ -2,21 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signUp } from '../api-calls';
 import { loginUser } from '../actions';
-
+import PropTypes from 'prop-types';
+import './SignUp.css';
 
 export class SignUp extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state={
       name: '',
       email: '',
       password: '',
       hasError: false
-    }
+    };
   }
 
   handleChange = (input) => {
-    const { name, value } = input.target
+    const { name, value } = input.target;
     this.setState({
       [name]: value
     });
@@ -24,33 +25,42 @@ export class SignUp extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const reply = await signUp(this.state)
-    
+    const reply = await signUp(this.state);
     if (reply.id) {
       this.props.login(this.state); 
-      this.setState({ hasError: false })    
+      this.setState({ hasError: false });  
     } else {
-      this.setState({ hasError: true })
+      this.setState({ hasError: true });
     }
   }
 
   signUpSuccess = () => {
     return this.state.hasError ? 
-    <h5>email unavailable</h5> :
-    this.props.user.name ?
-    <div>Welcome {this.props.user.name}</div> :
-    <div></div>
+      <h5>email unavailable</h5> :
+      this.props.user.name ?
+        <div>Welcome {this.props.user.name}</div> :
+        <div></div>;
   }
 
   render() {
-    return(
+    return (
       <form className='sign-up' onSubmit={this.handleSubmit}>
         <label htmlFor='name'>Name:</label>
         <input id='name' name='name' onChange={this.handleChange}/>
         <label htmlFor='email'>E-Mail:</label>
-        <input id= 'email' type='email' name='email' onChange={this.handleChange}/>
+        <input 
+          id= 'email' 
+          type='email' 
+          name='email' 
+          onChange={this.handleChange}
+        />
         <label htmlFor='password'>Password</label>
-        <input id='password' type='password' name='password' onChange={this.handleChange}/>
+        <input 
+          id='password' 
+          type='password' 
+          name='password' 
+          onChange={this.handleChange}
+        />
         <button onClick={this.showSignUp}>Sign Up</button>
         {this.signUpSuccess()}
       </form>
@@ -60,9 +70,15 @@ export class SignUp extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.user
-})
+});
+
 const mapDispatchToProps = (dispatch) => ({
   login: (user) => dispatch(loginUser(user))
-})
+});
+
+SignUp.propTypes = {
+  login: PropTypes.func,
+  user: PropTypes.object
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

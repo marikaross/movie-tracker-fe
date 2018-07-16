@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
 import * as apiCalls from './api-calls';
 import { moviesCleaner } from './helper.js';
@@ -19,9 +18,10 @@ describe('App', () => {
       const mockAddRecentMovies = jest.fn()
       const wrapper = await shallow(<App addRecentMovies={mockAddRecentMovies} />);
 
+
       expect(wrapper.instance().props.addRecentMovies).toHaveBeenCalledWith(['movies'])
     })
   })
 
 
-})
+

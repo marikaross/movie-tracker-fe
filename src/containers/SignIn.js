@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import {Link, withRouter, Redirect, Route} from 'react-router-dom';
-import { loginUser, logOutUser, populateUserFavs} from '../actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { loginUser, logOutUser, populateUserFavs } from '../actions';
+
 import { logIn, getFavorites } from '../api-calls';
+import './SignIn.css';
 
 export class SignIn extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state={
       email: '',
       password: '',
       hasError: false
-    }
+    };
   }
 
   handleChange = (input) => {
-    const { type, value } = input.target
+    const { type, value } = input.target;
     this.setState({
       [type]: value
     });
@@ -25,40 +27,47 @@ export class SignIn extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const user = await logIn(this.state);
-    
     if (user) {
       this.props.login(user);
-      this.setState({ hasError: false })
+      this.setState({ hasError: false });
       const favorites = await getFavorites(user.id); 
-      this.props.populateUserFavs(favorites.data)   
+      this.props.populateUserFavs(favorites.data);   
     } else {
-      this.setState({ hasError: true })
+      this.setState({ hasError: true });
     }
   }
 
   isLoggedIn = () => {
     return this.state.hasError ? 
-    <h5>email and password do not match</h5> :
-    <div></div>
+      <h5>email and password do not match</h5> :
+      <div></div>;
   }
 
   logOutUser = () => {
-    this.props.logOutUser()
+    this.props.logOutUser();
   }
 
   toLogOut = () => {
     return this.props.user.name ?
-    <button onClick={this.logOutUser}>Log Out</button> :
-    <div></div>
+      <button onClick={this.logOutUser}>Log Out</button> :
+      <div></div>;
   }
 
   render() {
-    return(
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor='email'>E-Mail</label>
-        <input id= 'email' type='email' onChange={this.handleChange}/>
-        <label htmlFor='password'>Password</label>
-        <input id='password' type='password' onChange={this.handleChange}/>
+    return (
+      <form className='sign-in-form' onSubmit={this.handleSubmit}>
+        <input 
+          id= 'email'
+          type='email'
+          placeholder='E-Mail'
+          onChange={this.handleChange}
+        />
+        <input 
+          id='password' 
+          type='password'
+          placeholder='Password'
+          onChange={this.handleChange}
+        />
         <button>Sign In</button>
         {this.isLoggedIn()}
         {this.toLogOut()}
@@ -69,11 +78,19 @@ export class SignIn extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.user
-})
+});
+
 const mapDispatchToProps = (dispatch) => ({
   login: (user) => dispatch(loginUser(user)),
   logOutUser: () => dispatch(logOutUser()),
   populateUserFavs: (id) => dispatch(populateUserFavs(id))
-})
+});
+
+SignIn.propTypes = {
+  login: PropTypes.func,
+  populateUserFavs: PropTypes.func,
+  logOutUser: PropTypes.func,
+  user: PropTypes.object
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

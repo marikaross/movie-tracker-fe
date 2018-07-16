@@ -3,37 +3,35 @@ import { apiKey } from './apiKey';
 export const getMovies = async () => {
   try {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018`;
-    const response = await fetch(url)
+    const response = await fetch(url);
     return response.json();
-  } 
-  catch(error) {
+  }
+  catch (error) {
     return error.message;
   }
-}
+};
 
 export const logIn = async (state) => {
-  try{
+  try {
     const url = 'http://localhost:3000/api/users/';
     const {email, password} = state;
-
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({email, password}),
       headers:{
         'Content-Type': 'application/json'
       }
-    })
+    });
     const result = await response.json();
     return result.data;
- 
   } 
   catch (error) {
     return false;
   }
-}
+};
 
 export const signUp = async (state) => {
-  try{
+  try {
     const url = 'http://localhost:3000/api/users/new';
     const {name, email, password} = state;
 
@@ -49,7 +47,7 @@ export const signUp = async (state) => {
   catch (error) {
     return false;
   }
-}
+};
 
 export const postFavorite = async (favorite) => {
   try {
@@ -66,7 +64,7 @@ export const postFavorite = async (favorite) => {
   catch (error) {
     return false;
   }
-}
+};
 
 export const getFavorites = async (userId) => {
   try {
@@ -74,43 +72,27 @@ export const getFavorites = async (userId) => {
     const response = await fetch(url);
     return await response.json();
   }
-  catch(error) {
+  catch (error) {
     return false;
   }
-
-}
+};
 
 export const deleteDatabaseFav = async (userId, movieId) => {
-  try{
+  try {
     const url = `http://localhost:3000/api/users/${userId}/favorites/${movieId}`;
     const response = await fetch(url, {
       method: 'DELETE',
-      body: JSON.stringify({user_id: userId,
-                            movie_id: movieId}),
+      body: JSON.stringify(
+        {user_id: userId,
+          movie_id: movieId}
+      ),
       headers: {
         'Content-Type': 'application-json'
       }
     });
-    console.log(await response.json())
-    return await response.json()
+    return await response.json();
   }
-  catch(error) {
+  catch (error) {
     return false;
   }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+};
