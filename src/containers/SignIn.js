@@ -40,7 +40,7 @@ export class SignIn extends Component {
 
   isLoggedIn = () => {
     return this.state.hasError ? 
-      <h5>email and password do not match</h5> :
+      <h5 className="user-message" >email and password do not match</h5> :
       <div></div>;
   }
 
@@ -68,7 +68,7 @@ export class SignIn extends Component {
           onChange={this.handleChange}
         />
         <button>Sign In</button>
-        <Link to='/signup' component={SignUp}>Sign Up</Link>
+        <Link to='/signup' component={SignUp}><button>Sign Up</button></Link>
         {this.isLoggedIn()}
         {this.toLogOut()}
       </form>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { signUp } from '../api-calls';
 import { loginUser } from '../actions';
 import PropTypes from 'prop-types';
+import { Redirect, Link } from 'react-router-dom';
 import './SignUp.css';
 
 export class SignUp extends Component {
@@ -28,18 +29,19 @@ export class SignUp extends Component {
     const reply = await signUp(this.state);
     if (reply.id) {
       this.props.login(this.state); 
-      this.setState({ hasError: false });  
+      this.setState({ hasError: false });
+      this.props.history.push('/')
     } else {
       this.setState({ hasError: true });
     }
   }
 
-  signUpSuccess = () => {
-    return this.state.hasError ? 
-      <h5>email unavailable</h5> :
-      this.props.user.name ?
-        <div>Welcome {this.props.user.name}</div> :
-        <div></div>;
+  handleError = () => {
+    if (this.state.hasError) {
+      return (
+        <h5 className="user-message">Email is unavailable</h5>
+        )
+    }
   }
 
   render() {
@@ -62,7 +64,8 @@ export class SignUp extends Component {
           onChange={this.handleChange}
         />
         <button onClick={this.showSignUp}>Sign Up</button>
-        {this.signUpSuccess()}
+        <Link to='/' ><button> Home </button></Link>
+        {this.handleError()}
       </form>
     );
   }
