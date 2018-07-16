@@ -29,12 +29,12 @@ export const populateUserFavs = (favorites) => ({
   favorites
 });
 
-export const deleteLocalFav = (movieId) => ({
+export const deleteLocalFav = (movie_id) => ({
   type: "DELETE_LOCAL_FAV",
-  movieId
+  movie_id
 });
 
-export const addLocalFav = (movie) => ({
+export const addLocalFav = (movie_id) => ({
   type: "ADD_LOCAL_FAV",
-  movie
+  movie_id
 });

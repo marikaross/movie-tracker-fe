@@ -32,7 +32,8 @@ export class SignIn extends Component {
       this.props.login(user);
       this.setState({ hasError: false });
       const favorites = await getFavorites(user.id); 
-      this.props.populateUserFavs(favorites.data); 
+      const favIds = favorites.data.map(fav => fav.movie_id)
+      this.props.populateUserFavs(favIds); 
     } else {
       this.setState({ hasError: true });
     }
