@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import {
   getMovies, 
@@ -41,11 +42,11 @@ describe ('getMovies', () => {
 });
 
 describe ('logIn', () => {
-  let url 
+  let url;
+
   beforeEach(() => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({status: 200, json: () => Promise.resolve(mockUserData) }))
-
-    url = 'http://localhost:3000/api/users/'
+    url = 'http://localhost:3000/api/users/';
   });
 
   it('should be called with the correct url', async () => {
@@ -150,16 +151,16 @@ describe ('postFavorite', () => {
 
   it('should throw an error if the fetch fails', async () => {
     window.fetch = jest.fn().mockImplementation(() => Promise.reject(Error(false)))
-    const expected = false
-    const result = await postFavorite(mockMovie)
-    expect(result).toEqual(expected)
-  })
-})
+    const expected = false;
+    const result = await postFavorite(mockMovie);
+    expect(result).toEqual(expected);
+  });
+});
 
 describe('getFavorites', () => {
-  let userId
-  let url
-  let mockFavorites 
+  let userId;
+  let url;
+  let mockFavorites;
 
   beforeEach(() => {
     userId = 2
@@ -173,35 +174,34 @@ describe('getFavorites', () => {
       overview: "SO good",
       vote_average: 7.5}
   ]
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({status: 200, json: () => Promise.resolve(mockFavorites)}))
-  })
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({status: 200, json: () => Promise.resolve(mockFavorites)}));
+  });
 
   it('should call fetch with the correct parameters', async () => {
     await getFavorites(2)
     expect(window.fetch).toHaveBeenCalledWith(url)
-  })
+  });
 
   it('should return the correct data', () => {
-    const expected = mockFavorites
-    const result = getFavorites(1)
-    expect(result).toEqual(expected)
-  })
+    const expected = mockFavorites;
+    const result = getFavorites(1);
+    expect(result).toEqual(expected);
+  });
 
   it('should throw an error if the fetch fails', async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.reject(Error(false)))
-    const expected = false
-    const result = await getFavorites(2)
-    expect(result).toEqual(expected)
+    window.fetch = jest.fn().mockImplementation(() => Promise.reject(Error(false)));
+    const expected = false;
+    const result = await getFavorites(2);
+    expect(result).toEqual(expected);
+  });
 
-  })
-})
+});
 
 describe ('deleteDatabaseFav', () => {
   let url
   let userId
   let movieId
   let mockOptionsObject
-
 
   beforeEach(() => {
       userId = 2
@@ -212,26 +212,29 @@ describe ('deleteDatabaseFav', () => {
       headers: {'Content-Type': 'application-json'},
       body: JSON.stringify({user_id: userId, movie_id: movieId})
     }
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({status: 200, json: () => Promise.resolve({status: "success", message: "1 row was deleted."})}))
-  })
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve(
+      {status: 200, json: () => Promise.resolve(
+        {status: "success", message: "1 row was deleted."})
+      })
+    );
+  });
 
   it('should call fetch with the correct parameters', async () => {
-    await deleteDatabaseFav(userId, movieId)
-    expect(window.fetch).toHaveBeenCalledWith(url, mockOptionsObject)
-  })
+    await deleteDatabaseFav(userId, movieId);
+    expect(window.fetch).toHaveBeenCalledWith(url, mockOptionsObject);
+  });
 
   it('should return the appropriate data', async () => {
-  const expected = {status: "success", message: "1 row was deleted."}
-  const result = await deleteDatabaseFav(userId, movieId)
-  expect(result).toEqual(expected)
-  })
+    const expected = {status: "success", message: "1 row was deleted."}
+    const result = await deleteDatabaseFav(userId, movieId);
+    expect(result).toEqual(expected);
+  });
 
   it('should throw an error if the fetch fails', async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.reject(Error(false)))
-    const result = await deleteDatabaseFav(userId, movieId)
-    const expected = false
-    expect(result).toEqual(expected)
+    window.fetch = jest.fn().mockImplementation(() => Promise.reject(Error(false)));
+    const result = await deleteDatabaseFav(userId, movieId);
+    const expected = false;
+    expect(result).toEqual(expected);
+  });
 
-  })
-})
-
+});

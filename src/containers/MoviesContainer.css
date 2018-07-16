@@ -1,0 +1,23 @@
+.movie-container {
+  display: flex;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.movie-container div {
+  padding: 1em;
+  background-color: #607D8B;
+  color: #212121;
+  border: 2px solid #212121;
+  border-radius: 20px;
+  margin: 1em;
+}
+
+.movie-container div button {
+  background-color: #009688;
+  border: 0;
+  border-radius: 20px;
+  font-size: 1em;
+  color: #FFFFFF;
+  padding: .5em 1em;
+}

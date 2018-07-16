@@ -5,6 +5,7 @@ import { loginUser, logOutUser, populateUserFavs } from '../actions';
 import { Redirect, withRouter } from 'react-router';
 
 import { logIn, getFavorites } from '../api-calls';
+import './SignIn.css';
 
 export class SignIn extends Component {
   constructor(props) {
@@ -58,11 +59,19 @@ export class SignIn extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor='email'>E-Mail</label>
-        <input id= 'email' type='email' onChange={this.handleChange}/>
-        <label htmlFor='password'>Password</label>
-        <input id='password' type='password' onChange={this.handleChange}/>
+      <form className='sign-in-form' onSubmit={this.handleSubmit}>
+        <input 
+          id= 'email'
+          type='email'
+          placeholder='E-Mail'
+          onChange={this.handleChange}
+        />
+        <input 
+          id='password' 
+          type='password'
+          placeholder='Password'
+          onChange={this.handleChange}
+        />
         <button>Sign In</button>
         {this.isLoggedIn()}
         {this.toLogOut()}
