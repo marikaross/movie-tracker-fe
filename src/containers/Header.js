@@ -5,9 +5,16 @@ import PropTypes from 'prop-types';
 import './Header.css';
 import SignIn from './SignIn.js';
 import SignUp from './SignUp.js';
+import { logOutUser } from '../actions';
 
 export const Header = (props) => {
+  console.log(props)
   return (
+    props.user.name ?
+      <div>
+        <button className='log-out' onClick={props.logOutUser}> Log Out </button>
+      </div>
+      :
       <div>
         <Link to='/login' component={SignIn}>Login</Link>
         <Link to='/signup' component={SignUp}>Sign Up</Link>
@@ -15,12 +22,16 @@ export const Header = (props) => {
   );
 };
 
-const mapStateToProps = () => ({
-  user: this.state.userName
+const mapStateToProps = (state) => ({
+  user: state.user
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  logOutUser: () => dispatch(logOutUser())
+}) 
+
 Header.propTypes = {
-  userName: PropTypes.object
+  user: PropTypes.object
 };
 
-export default withRouter(connect(mapStateToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

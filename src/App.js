@@ -8,7 +8,7 @@ import MoviesContainer from './containers/MoviesContainer.js';
 import { addMovies } from './actions';
 import SignIn from './containers/SignIn.js';
 import SignUp from './containers/SignUp.js';
-import { Header } from './containers/Header.js';
+import Header from './containers/Header.js';
 import './App.css';
 
 export class App extends Component {
@@ -21,7 +21,7 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path='/' component={Header} />
+        <Route exact path='/' component={Header} />
         <Route path='/login' component={SignIn} />
         <Route path='/signup' component={SignUp} />
         <Route path='/' component={MoviesContainer} />
