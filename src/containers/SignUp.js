@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { signUp } from '../api-calls';
 import { loginUser } from '../actions';
 import PropTypes from 'prop-types';
+import './SignUp.css';
 
 export class SignUp extends Component {
   constructor(props) {
