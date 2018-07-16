@@ -18,9 +18,9 @@ export class SignIn extends Component {
   }
 
   handleChange = (input) => {
-    const { type, value } = input.target;
+    const { id, value } = input.target;
     this.setState({
-      [type]: value
+      [id]: value
     });
   }
 
@@ -49,12 +49,14 @@ export class SignIn extends Component {
   }
 
   toLogOut = () => {
-    return this.props.user.name ?
-    <div>
-      <Redirect to='/' />
-      <button onClick={this.logOutUser}>Log Out</button>
-      </div> :
-      <div></div>;
+    if (this.props.user.name) {
+    return (
+      <div>
+        <Redirect to='/' />
+        <button onClick={this.logOutUser}>Log Out</button>
+      </div>  
+      )
+    }
   }
 
   render() {
