@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loginUser, logOutUser, populateUserFavs } from '../actions';
+import { Redirect, withRouter } from 'react-router';
 
 import { logIn, getFavorites } from '../api-calls';
 
@@ -30,7 +31,7 @@ export class SignIn extends Component {
       this.props.login(user);
       this.setState({ hasError: false });
       const favorites = await getFavorites(user.id); 
-      this.props.populateUserFavs(favorites.data);   
+      this.props.populateUserFavs(favorites.data);  
     } else {
       this.setState({ hasError: true });
     }
@@ -48,7 +49,10 @@ export class SignIn extends Component {
 
   toLogOut = () => {
     return this.props.user.name ?
-      <button onClick={this.logOutUser}>Log Out</button> :
+    <div>
+      <Redirect to='/' />
+      <button onClick={this.logOutUser}>Log Out</button>
+      </div> :
       <div></div>;
   }
 
@@ -84,4 +88,4 @@ SignIn.propTypes = {
   user: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));

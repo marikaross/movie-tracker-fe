@@ -23,7 +23,7 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Route exact path='/' component={Header} />
         <Route exact path='/login' component={SignIn} />
         <Route path='/sign-up' component={SignUp} />
         <Route path='/' component={MoviesContainer} />
