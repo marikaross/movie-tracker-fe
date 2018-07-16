@@ -5,14 +5,20 @@ import PropTypes from 'prop-types';
 import './Header.css';
 import SignIn from './SignIn.js';
 import SignUp from './SignUp.js';
-import { logOutUser } from '../actions';
+import { logOutUser, toggleFilter } from '../actions';
 
 export const Header = (props) => {
-  console.log(props)
+
   return (
     props.user.name ?
       <div>
+        <h4> Welcome {props.user.name} !</h4>
         <button className='log-out' onClick={props.logOutUser}> Log Out </button>
+        <button 
+          className='favorites' 
+          onClick={props.toggleFilter}>
+          {props.showAllMovies ? "Favorites" : "Show All" }
+        </button>
       </div>
       :
       <div>
@@ -22,12 +28,16 @@ export const Header = (props) => {
   );
 };
 
+
+
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  showAllMovies: state.showAllMovies
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  logOutUser: () => dispatch(logOutUser())
+  logOutUser: () => dispatch(logOutUser()),
+  toggleFilter: () => dispatch(toggleFilter())
 }) 
 
 Header.propTypes = {
