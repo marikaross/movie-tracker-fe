@@ -1,18 +1,21 @@
 import React from 'react';
-import App from './App';
+import { App, mapDispatchToProps, mapStateToProps } from './App';
 import * as apiCalls from './api-calls';
-import { moviesCleaner } from './helper.js';
+import { moviesCleaner } from './moviesCleaner.js';
 import { shallow } from 'enzyme';
-
+import { addMovies } from './actions';
+jest.mock('./moviesCleaner')
   
 describe('App', () => {
-  it.skip('matches the snapshot', () => {
+  it('matches the snapshot', () => {
     const mockAddRecentMovies = jest.fn()
     const wrapper = shallow(<App addRecentMovies={mockAddRecentMovies} />)
-    expect(wrapper).toEqualSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
+
   describe('componentDidMount', () => {
-    it.skip('calls props.addRecentMovies with the correct parameters', async () => {
+    it.only('calls props.addRecentMovies with the correct parameters', async () => {
+      console.log(moviesCleaner)
       apiCalls.getMovies = jest.fn().mockImplementation(() => Promise.resolve({results: ['movies']}))
       moviesCleaner = jest.fn().mockImplementation(() => ['movies'])
       const mockAddRecentMovies = jest.fn()
@@ -22,6 +25,21 @@ describe('App', () => {
       expect(wrapper.instance().props.addRecentMovies).toHaveBeenCalledWith(['movies'])
     })
   })
+
+  describe('mapDispatchtoProps', () => {
+    it.skip('calls dispatch with the correct aruguments', () => {
+      const mockDispatch = jest.fn()
+      const mockAction = {type: 'ADD_MOVIES', movies: ['I am a movie']}
+      // const actionToDispatch = addMovies(movies)
+      console.log(mapDispatchToProps)
+
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.addRecentMovies(mockAction.movies)
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction)
+    })
+  })
+
+})
 
 
 

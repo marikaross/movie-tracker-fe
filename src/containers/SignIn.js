@@ -87,11 +87,12 @@ const mapDispatchToProps = (dispatch) => ({
   populateUserFavs: (id) => dispatch(populateUserFavs(id))
 });
 
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));
+
 SignIn.propTypes = {
   login: PropTypes.func,
   populateUserFavs: PropTypes.func,
   logOutUser: PropTypes.func,
   user: PropTypes.object
 };
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));
