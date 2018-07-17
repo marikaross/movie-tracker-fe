@@ -5,7 +5,6 @@ export const addMovies = (movies) => ({
 
 export const toggleFilter = () => ({
   type: "TOGGLE_FILTER"
-
 });
 
 export const loginUser = (user) => ({
