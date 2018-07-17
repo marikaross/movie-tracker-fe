@@ -7,22 +7,77 @@ describe('actions', () => {
       type: 'ADD_MOVIES',
       movies
     };
-
     const result = action.addMovies(movies);
     expect(result).toEqual(expected);
   });
 
-  it('should return a type of TOGGLE_FAV with an id', () => {
-    const id = 2;
+  it('should return a type of TOGGLE_FILTER', () => {
     const expected = {
-      type: 'TOGGLE_FAV',
-      id
+      type: "TOGGLE_FILTER"
     };
-    const result = action.toggleFav(id);
+    const result = action.toggleFilter();
     expect(result).toEqual(expected);
   });
 
-  it('should return a types of TOGGLE_FILTER', () => {
+  it('should return a type of LOGIN_USER, with user', () => {
+    const user = {};
+    const expected = {
+      type: "LOGIN_USER",
+      user
+    };
+    const result = action.loginUser(user);
+    expect(result).toEqual(expected);
+  });
 
+  it('should return a type of SIGN_UP_USER, with user', () => {
+    const name = 'Jim';
+    const email = 'someEmail@email.com';
+    const password = 'abcd';
+    const expected = {
+      type: "SIGN_UP_USER",
+      name,
+      email,
+      password
+    };
+    const result = action.signUpUser(name, email, password);
+    expect(result).toEqual(expected);
+  });
+
+  it('should return a type of LOG_OUT_USER', () => {
+    const expected = {
+      type: "LOG_OUT_USER"
+    };
+    const result = action.logOutUser();
+    expect(result).toEqual(expected);
+  });
+
+  it('should return a type of POPULATE_USER_FAVS, with favorites', () => {
+    const favorites = [];
+    const expected = {
+      type: "POPULATE_USER_FAVS",
+      favorites
+    };
+    const result = action.populateUserFavs(favorites);
+    expect(result).toEqual(expected);
+  });
+
+  it('should return a type of DELETE_LOCAL_FAV, with movie_id', () => {
+    const movie_id = 123;
+    const expected = {
+      type: "DELETE_LOCAL_FAV",
+      movie_id
+    };
+    const result = action.deleteLocalFav(movie_id);
+    expect(result).toEqual(expected);
+  });
+
+  it('should return a type of ADD_LOCAL_FAV, with movie_id', () => {
+    const movie_id = 123;
+    const expected = {
+      type: "ADD_LOCAL_FAV",
+      movie_id
+    };
+    const result = action.addLocalFav(movie_id);
+    expect(result).toEqual(expected);
   });
 });

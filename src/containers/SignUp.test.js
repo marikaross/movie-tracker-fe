@@ -2,7 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import  { SignUp, mapStateToProps, mapDispatchToProps } from './SignUp';
 import { signUp } from '../api-calls';
-import { loginUser } from '../actions';
+import { loginUser, signUpUser } from '../actions';
+
 
 jest.mock('../api-calls.js');
 
@@ -24,12 +25,10 @@ describe.only('SignUp', () => {
   })
 
   it('should instantiate with some state', () => {
-
     expect(wrapper.instance().state).toEqual(mockState);
   })
 
   it('should update state when input changes', () => {
-    
     wrapper.find('#name').simulate('change', mockEvent);
     
     expect(wrapper.state('name')).toEqual('bob');
@@ -39,11 +38,22 @@ describe.only('SignUp', () => {
     wrapper = shallow(<SignUp login={ jest.fn()} history={['yeah']}/>) 
 
     wrapper.find('.sign-up').simulate('submit', mockEvent);
-    expect(signUp).toBeCalled();
+    expect(signUp).toBeCalledWith(mockState);
   })
 
-  it.skip('should set hasError to true on failed response', () => {
+  it('should set hasError to true on failed response',async () => {
+    wrapper = shallow(<SignUp login={ jest.fn()} history={['yeah']}/>)
+    
+    await wrapper.find('.sign-up').simulate('submit', mockEvent);
+    expect(wrapper.state('hasError')).toEqual(true)
+  })
 
+  it('should set hasError to false on successful response',async () => {
+    wrapper = shallow(<SignUp login={ jest.fn()} history={['yeah']}/>)
+    wrapper.setState({name: 'bugs'})
+
+    await wrapper.find('.sign-up').simulate('submit', mockEvent);
+    expect(wrapper.state('hasError')).toEqual(false)
   })
 
   describe('mapStateToProps', () => {
@@ -53,8 +63,8 @@ describe.only('SignUp', () => {
         dog: {breed: 'mut'}
       }
       const expectedProps = {user: {name: 'Joe'}};
-
       const mappedProps = mapStateToProps(mockState);
+
       expect(mappedProps).toEqual(expectedProps)
     })
   })
@@ -62,10 +72,11 @@ describe.only('SignUp', () => {
   describe('mapDispatchToProps', () => {
     it('calls dispatch with loginUser when handleSubmit is called', () => {
       const mockDispatch = jest.fn();
-      const actionToDispatch = loginUser({email: 'th', password: 'e'});
-
+      const mockUser = {name: 'Joe', password: 'bob'}
+      const actionToDispatch = loginUser(mockUser);
       const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.login(actionToDispatch);
+
+      mappedProps.login(mockUser);
 
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
