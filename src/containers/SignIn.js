@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { loginUser, logOutUser, populateUserFavs } from '../actions';
+import { loginUser, populateUserFavs } from '../actions';
 import { Redirect, withRouter, Link } from 'react-router-dom';
 import SignUp from './SignUp'
 import { logIn, getFavorites } from '../api-calls';
@@ -29,6 +29,7 @@ export class SignIn extends Component {
     event.preventDefault();
     const user = await logIn(this.state);
     if (user) {
+      console.log(user)
       this.props.login(user);
       this.setState({ hasError: false });
       const favorites = await getFavorites(user.id); 
@@ -45,9 +46,6 @@ export class SignIn extends Component {
       <div></div>;
   }
 
-  logOutUser = () => {
-    this.props.logOutUser();
-  }
 
   toLogOut = () => {
    return this.props.user.name ? <Redirect to='/' /> : <div></div> 
@@ -83,7 +81,6 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   login: (user) => dispatch(loginUser(user)),
-  logOutUser: () => dispatch(logOutUser()),
   populateUserFavs: (id) => dispatch(populateUserFavs(id))
 });
 
@@ -93,6 +90,5 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));
 SignIn.propTypes = {
   login: PropTypes.func,
   populateUserFavs: PropTypes.func,
-  logOutUser: PropTypes.func,
   user: PropTypes.object
 };

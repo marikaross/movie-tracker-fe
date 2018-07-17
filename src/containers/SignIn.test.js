@@ -56,13 +56,19 @@ describe ('SignIn', () => {
     expect(logIn).toHaveBeenCalled()
   })
 
-  it('should call mockLogin on handleSubmit', () => {
-    wrapper.find('.sign-in-form').simulate('submit', mockEvent);
-    expect(mockLogin).toHaveBeenCalled();
+  it('should call mockLogin on handleSubmit', async () => {
+
+    const mockState = {user: {id: 3, name: 'potato', favorites: [{}, {}]}}
+    wrapper.setState({'hasError': true})
+
+    await wrapper.find('.sign-in-form').simulate('submit', mockEvent);
+    expect(wrapper.state('hasError')).toEqual(false);
   })
 
-  it('should change the state of hasError to true if a fetch call fails', () => {
-
+  it('should change the state of hasError to true if a fetch call fails', async () => {
+    wrapper.setState({name: 'garbage'})
+    await wrapper.find('.sign-in-form').simulate('submit', mockEvent)
+    expect(wrapper.state('hasError')).toEqual(true); 
   })
 
   describe('mapDispatchToProps', () => {
@@ -80,13 +86,6 @@ describe ('SignIn', () => {
 
       expect(mockDispatch).toBeCalledWith(actionToDispatch)
   })
-
-    it('should call dispatch when using logOutUser from MDTP', () => {
-      const actionToDispatch = action.logOutUser()
-      const mappedProps = mapDispatchToProps(mockDispatch)
-      mappedProps.logOutUser()
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    })
 
     it('should call dispatch when using populateUserFavs from MDTP', () => {
       const actionToDispatch = action.populateUserFavs(3)
