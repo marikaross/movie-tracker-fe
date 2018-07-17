@@ -35,8 +35,6 @@ export const MoviesContainer = (props) => {
     return props.user.favorites ? 
     props.user.favorites.includes(id) : null;
   }
-
-
   
   const cards = props.movies.map(movie => (
     <MovieCard
@@ -62,9 +60,6 @@ export const MoviesContainer = (props) => {
     }
   })
 
-  
-  
-
   return (
     <div className='movie-container'>
     {console.log(props.showAllMovies)}
@@ -73,13 +68,13 @@ export const MoviesContainer = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   movies: state.movies,
   showAllMovies: state.showAllMovies,
   user: state.user
 });
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   addLocalFav: (movie) => dispatch(addLocalFav(movie)),
   deleteLocalFav: (movieId) => dispatch(deleteLocalFav(movieId))  
 });

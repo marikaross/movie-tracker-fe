@@ -22,6 +22,4 @@ describe('App', () => {
       expect(wrapper.instance().props.addRecentMovies).toHaveBeenCalledWith(['movies'])
     })
   })
-
-
-
+});

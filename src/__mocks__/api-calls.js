@@ -1,0 +1,1 @@
+export const signUp = jest.fn().mockImplementation(()=> (Promise.resolve({id: 1})));
