@@ -14,8 +14,7 @@ describe('App', () => {
   })
 
   describe('componentDidMount', () => {
-    it.only('calls props.addRecentMovies with the correct parameters', async () => {
-      console.log(moviesCleaner)
+    it('calls props.addRecentMovies with the correct parameters', async () => {
       apiCalls.getMovies = jest.fn().mockImplementation(() => Promise.resolve({results: ['movies']}))
       moviesCleaner = jest.fn().mockImplementation(() => ['movies'])
       const mockAddRecentMovies = jest.fn()
@@ -27,11 +26,9 @@ describe('App', () => {
   })
 
   describe('mapDispatchtoProps', () => {
-    it.skip('calls dispatch with the correct aruguments', () => {
+    it('calls dispatch with the correct aruguments', () => {
       const mockDispatch = jest.fn()
       const mockAction = {type: 'ADD_MOVIES', movies: ['I am a movie']}
-      // const actionToDispatch = addMovies(movies)
-      console.log(mapDispatchToProps)
 
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.addRecentMovies(mockAction.movies)
