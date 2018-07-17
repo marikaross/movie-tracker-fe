@@ -2,6 +2,8 @@ import React from 'react';
 import { SignIn, mapStateToProps, mapDispatchToProps } from '../containers/SignIn.js';
 import * as action from '../actions';
 import {shallow} from 'enzyme';
+import { logIn } from '../api-calls'
+jest.mock('../api-calls')
 
 
 describe ('SignIn', () => {
@@ -9,11 +11,15 @@ describe ('SignIn', () => {
   let mockPopulateUserFavs
   let mocklogOutUser
   let mockLogin
+  let mockEvent
+  let mockUser
 
   beforeEach(() => {
     mockLogin = jest.fn();
     mockPopulateUserFavs = jest.fn();
     mocklogOutUser = jest.fn();
+    mockEvent = {preventDefault: jest.fn(), target: {email:'', password: ''}}
+    mockUser = {name: 'oscar'}
     wrapper = shallow(<SignIn 
       login={mockLogin} 
       populateUserFavs={mockPopulateUserFavs} 
@@ -45,7 +51,61 @@ describe ('SignIn', () => {
     expect(wrapper.state('password')).toEqual(mockEvent.target.value)
   })
 
-  it('should call ')
+  it('should call logIn on handleSubmit', () => {
+    wrapper.find('.sign-in-form').simulate('submit', mockEvent)
+    expect(logIn).toHaveBeenCalled()
+  })
+
+  it('should call mockLogin on handleSubmit', () => {
+    wrapper.find('.sign-in-form').simulate('submit', mockEvent);
+    expect(mockLogin).toHaveBeenCalled();
+  })
+
+  it('should change the state of hasError to true if a fetch call fails', () => {
+
+  })
+
+  describe('mapDispatchToProps', () => {
+    let mockDispatch
+
+    beforeEach(() => {
+      mockDispatch = jest.fn()
+    })
+
+    it('should call dispatch when using login from MDTP', () => {
+    
+      const actionToDispatch = action.loginUser(mockUser)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.login(mockUser)
+
+      expect(mockDispatch).toBeCalledWith(actionToDispatch)
+  })
+
+    it('should call dispatch when using logOutUser from MDTP', () => {
+      const actionToDispatch = action.logOutUser()
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.logOutUser()
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it('should call dispatch when using populateUserFavs from MDTP', () => {
+      const actionToDispatch = action.populateUserFavs(3)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.populateUserFavs(3)
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+    
+  })
+
+  describe('mapStateToProps', () => {
+    it('should return a user object', () => {
+      const mockState = {user: {id: 3, name: 'potato', favorites: [{}, {}]}}
+      const expected = {id: 3, name: 'potato', favorites: [{}, {}]}
+      const mappedProps = mapStateToProps(mockState)
+      expect(mappedProps).toEqual(mockState)
+
+    })
+  })
 
 })
 
