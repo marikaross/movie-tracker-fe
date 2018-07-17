@@ -62,7 +62,6 @@ export const MoviesContainer = (props) => {
 
   return (
     <div className='movie-container'>
-    {console.log(props.showAllMovies)}
       {props.showAllMovies  ? cards : favoriteCards}
     </div>
   );
