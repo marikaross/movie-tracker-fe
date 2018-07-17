@@ -67,13 +67,13 @@ export const MoviesContainer = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   movies: state.movies,
   showAllMovies: state.showAllMovies,
   user: state.user
 });
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   addLocalFav: (movie) => dispatch(addLocalFav(movie)),
   deleteLocalFav: (movieId) => dispatch(deleteLocalFav(movieId))  
 });

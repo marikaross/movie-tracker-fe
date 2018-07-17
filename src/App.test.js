@@ -19,8 +19,6 @@ describe('App', () => {
       moviesCleaner = jest.fn().mockImplementation(() => ['movies'])
       const mockAddRecentMovies = jest.fn()
       const wrapper = await shallow(<App addRecentMovies={mockAddRecentMovies} />);
-
-
       expect(wrapper.instance().props.addRecentMovies).toHaveBeenCalledWith(['movies'])
     })
   })
@@ -37,6 +35,7 @@ describe('App', () => {
   })
 
 })
+
 
 
 
