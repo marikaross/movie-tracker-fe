@@ -35,6 +35,8 @@ export const MoviesContainer = (props) => {
     return props.user.favorites ? 
     props.user.favorites.includes(id) : null;
   }
+
+
   
   const cards = props.movies.map(movie => (
     <MovieCard
@@ -45,16 +47,35 @@ export const MoviesContainer = (props) => {
       isFav={isFavorite(movie.movie_id)}
     />)
   );
+
+  const favoriteCards = props.movies.map(movie => {
+    if (isFavorite(movie.movie_id)) {
+      return ( 
+        <MovieCard
+          movie={movie} 
+          key={movie.id} 
+          userId={props.user.id}
+          toggleFav={toggleFav}
+          isFav={true}
+        />
+      )
+    }
+  })
+
+  
+  
+
   return (
     <div className='movie-container'>
-      {cards}
+    {console.log(props.showAllMovies)}
+      {props.showAllMovies  ? cards : favoriteCards}
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
-  showAll: state.showAll,
+  showAllMovies: state.showAllMovies,
   user: state.user
 });
 
