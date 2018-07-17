@@ -35,8 +35,6 @@ export const MoviesContainer = (props) => {
     return props.user.favorites ? 
     props.user.favorites.includes(id) : null;
   }
-
-
   
   const cards = props.movies.map(movie => (
     <MovieCard
@@ -62,12 +60,8 @@ export const MoviesContainer = (props) => {
     }
   })
 
-  
-  
-
   return (
     <div className='movie-container'>
-    {console.log(props.showAllMovies)}
       {props.showAllMovies  ? cards : favoriteCards}
     </div>
   );
