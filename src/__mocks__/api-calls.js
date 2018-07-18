@@ -17,3 +17,5 @@ export const signUp = jest.fn().mockImplementation((state) => {
   }
 }); 
 
+export const deleteDatabaseFav = jest.fn().mockImplementation(() => Promise.resolve())
+

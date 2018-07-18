@@ -23,8 +23,6 @@ export const MoviesContainer = (props) => {
     }
   };
 
-  const addFav = (id) => {
-  };
 
   const isDuplicate = (movieId) => {
     return props.user.favorites.find(favoriteId => favoriteId === movieId);
