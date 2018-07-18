@@ -28,9 +28,9 @@ export class SignUp extends Component {
     event.preventDefault();
     const reply = await signUp(this.state);
     if (reply.id) {
-      this.setState({id: reply.id, favorites: [], hasError: false})
+      this.setState({id: reply.id, favorites: [], hasError: false});
       this.props.login(this.state);    
-      this.props.history.push('/')
+      this.props.history.push('/');
     } else {
       this.setState({ hasError: true });
     }
@@ -85,7 +85,8 @@ export const mapDispatchToProps = (dispatch) => ({
 
 SignUp.propTypes = {
   login: PropTypes.func,
-  user: PropTypes.object
+  user: PropTypes.object,
+  history: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

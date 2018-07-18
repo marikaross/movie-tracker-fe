@@ -31,7 +31,7 @@ export class SignIn extends Component {
       this.props.login(user);
       this.setState({ hasError: false });
       const favorites = await getFavorites(user.id); 
-      const favIds = favorites.data.map(fav => fav.movie_id)
+      const favIds = favorites.data.map(fav => fav.movie_id);
       this.props.populateUserFavs(favIds); 
     } else {
       this.setState({ hasError: true });
@@ -45,7 +45,7 @@ export class SignIn extends Component {
   }
 
   toLogOut = () => {
-   return this.props.user.name ? <Redirect to='/' /> : <div></div> 
+    return this.props.user.name ? <Redirect to='/' /> : <div></div>;
   }
 
   render() {
@@ -85,5 +85,6 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));
 
 SignIn.propTypes = {
   login: PropTypes.func,
-  populateUserFavs: PropTypes.func
+  populateUserFavs: PropTypes.func,
+  user: PropTypes.object
 };

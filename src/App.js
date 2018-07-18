@@ -29,7 +29,7 @@ export class App extends Component {
       </div>
     );
   }
-};
+}
 
 export const mapDispatchToProps = (dispatch) => ({
   addRecentMovies: (movies) => dispatch(addMovies(movies))

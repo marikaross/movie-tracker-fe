@@ -9,7 +9,7 @@ import './MoviesContainer.css';
 export const MoviesContainer = (props) => {
 
   const toggleFav = async (userId, movie) => {
-    if(!props.user.name) {
+    if (!props.user.name) {
       props.history.push('/login');
       return null;
     }
@@ -29,7 +29,7 @@ export const MoviesContainer = (props) => {
 
   const isFavorite = (id) => {
     return props.user.favorites ? 
-    props.user.favorites.includes(id) : null;
+      props.user.favorites.includes(id) : null;
   };
   
   const cards = props.movies.map(movie => (
@@ -75,10 +75,12 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 MoviesContainer.propTypes = {
+  history: PropTypes.object,
   addLocalFav: PropTypes.func,
   deleteLocalFav: PropTypes.func,
   user: PropTypes.object,
-  movies: PropTypes.array
+  movies: PropTypes.array,
+  showAllMovies: PropTypes.bool
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesContainer);

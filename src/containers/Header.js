@@ -8,7 +8,6 @@ import SignUp from './SignUp.js';
 import { logOutUser, toggleFilter } from '../actions';
 
 export const Header = (props) => {
-  console.log(props)
   return (
     props.user.name ?
       <div className='sign-in-sign-up'>
@@ -43,6 +42,8 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 Header.propTypes = {
+  logOutUser: PropTypes.func,
+  toggleFilter: PropTypes.func,
   user: PropTypes.object,
   showAllMovies: PropTypes.bool
 };

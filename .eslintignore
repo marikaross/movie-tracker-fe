@@ -1,0 +1,4 @@
+/src/**/*.test.js
+/src/moviesCleaner.test
+/src/api-calls.test
+/src/__mocks__
