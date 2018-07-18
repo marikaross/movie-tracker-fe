@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import * as action from '../actions';
+import { mount } from 'enzyme';
+import {toggleFilter, logOutUser} from '../actions';
 import { Header, mapStateToProps, mapDispatchToProps } from './Header.js'
 
 
@@ -11,9 +11,11 @@ describe('header', () => {
   let mockLogOutUser
 
   beforeEach(() => {
-    togglefilter = jest.fn()
-    logOutUser = jest.fn()
+    mockToggleFilter = jest.fn()
+    mockLogOutUser = jest.fn()
     wrapper = mount(<Header 
+      user={{name: 'Ben'}}
+      
       toggleFilter={mockToggleFilter}
       logOutUser={mockLogOutUser}
       />)
@@ -21,6 +23,7 @@ describe('header', () => {
   })
 
   it('should match the snapshot', () => {
+   
     expect(wrapper).toMatchSnapshot()
   })
 
@@ -55,14 +58,14 @@ describe('mapDispatchToProps', () => {
   })
 
   it('calls dispatch when using logOutUser from mDTP', () => {
-    const actionToDispatch = action.logOutUser()
+    const actionToDispatch = logOutUser()
     const mappedProps = mapDispatchToProps(mockDispatch)
     mappedProps.logOutUser()
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
   })
 
   it('calls dispatch when using toggleFilter', () => {
-    const actionToDispatch = action.toggleFilter()
+    const actionToDispatch = toggleFilter()
     const mappedProps = mapDispatchToProps(mockDispatch)
     mappedProps.toggleFilter()
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
