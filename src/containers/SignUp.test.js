@@ -4,7 +4,6 @@ import  { SignUp, mapStateToProps, mapDispatchToProps } from './SignUp';
 import { signUp } from '../api-calls';
 import { loginUser, signUpUser } from '../actions';
 
-
 jest.mock('../api-calls.js');
 
 describe.only('SignUp', () => {

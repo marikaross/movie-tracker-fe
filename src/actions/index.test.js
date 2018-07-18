@@ -29,20 +29,6 @@ describe('actions', () => {
     expect(result).toEqual(expected);
   });
 
-  it('should return a type of SIGN_UP_USER, with user', () => {
-    const name = 'Jim';
-    const email = 'someEmail@email.com';
-    const password = 'abcd';
-    const expected = {
-      type: "SIGN_UP_USER",
-      name,
-      email,
-      password
-    };
-    const result = action.signUpUser(name, email, password);
-    expect(result).toEqual(expected);
-  });
-
   it('should return a type of LOG_OUT_USER', () => {
     const expected = {
       type: "LOG_OUT_USER"
