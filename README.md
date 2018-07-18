@@ -1,4 +1,4 @@
-<img src="">
+<img src="movie-tracker.png">
 
 # Movie Tracker
 
