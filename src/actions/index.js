@@ -12,13 +12,6 @@ export const loginUser = (user) => ({
   user
 });
 
-// export const signUpUser = (name, email, password) => ({
-//   type: "SIGN_UP_USER",
-//   name,
-//   email,
-//   password
-// });
-
 export const logOutUser = () => ({
   type: "LOG_OUT_USER"
 });
