@@ -1,3 +1,5 @@
+<img src="">
+
 # Movie Tracker
 
 This app populates a list of recent movies, allowing users to sign up, sign in, and/or select and save favorite movie information. Built in 9 days by David Starr Dunn, Marika Ross, and Joel O'Connor with React, Redux, React-Router, and a Postgres database.
