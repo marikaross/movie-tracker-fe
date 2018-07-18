@@ -29,7 +29,6 @@ export class SignIn extends Component {
     event.preventDefault();
     const user = await logIn(this.state);
     if (user) {
-      console.log(user)
       this.props.login(user);
       this.setState({ hasError: false });
       const favorites = await getFavorites(user.id); 
