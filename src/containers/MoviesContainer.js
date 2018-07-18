@@ -15,10 +15,10 @@ export const MoviesContainer = (props) => {
     }
     if (isDuplicate(movie.movie_id)) {  
       props.deleteLocalFav(movie.movie_id);
-      const deleted = await deleteDatabaseFav(userId, movie.movie_id);
+      await deleteDatabaseFav(userId, movie.movie_id);
     } else { 
       const newFavorite = {user_id: userId, ...movie};
-      const newFavId = await postFavorite(newFavorite);
+      await postFavorite(newFavorite);
       props.addLocalFav(movie.movie_id);
     }
   };

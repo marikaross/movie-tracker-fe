@@ -1,19 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MoviesContainer should match the snapshot 1`] = `
-ShallowWrapper {
+ReactWrapper {
   "length": 1,
-  Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Unknown
     addLocalFav={[Function]}
     deleteLocalFav={[Function]}
-    movies={Array []}
+    history={Array []}
+    movies={
+        Array [
+            Object {
+              "movie_id": 1,
+            },
+          ]
+    }
     showAllMovies={true}
     user={
         Object {
             "favorites": Array [
-              Object {},
-              Object {},
+              1,
+              4,
             ],
             "id": 4,
             "name": "oscar",
@@ -27,30 +33,363 @@ ShallowWrapper {
     "simulateEvent": [Function],
     "unmount": [Function],
   },
+  Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
-      "children": Array [],
-      "className": "movie-container",
+      "addLocalFav": [Function],
+      "deleteLocalFav": [Function],
+      "history": Array [],
+      "movies": Array [
+        Object {
+          "movie_id": 1,
+        },
+      ],
+      "showAllMovies": true,
+      "user": Object {
+        "favorites": Array [
+          1,
+          4,
+        ],
+        "id": 4,
+        "name": "oscar",
+      },
     },
     "ref": null,
-    "rendered": Array [],
-    "type": "div",
+    "rendered": Object {
+      "instance": <div
+        class="movie-container"
+>
+        <div
+                class="movie-card favorite"
+        >
+                <img
+                        alt="popular movie"
+                        src="https://image.tmdb.org/t/p/w300/undefined"
+                />
+                <h3 />
+                <h3 />
+                <button>
+                        Favorite
+                </button>
+        </div>
+</div>,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Unknown
+            isFav={true}
+            movie={
+                        Object {
+                                    "movie_id": 1,
+                                  }
+            }
+            toggleFav={[Function]}
+            userId={4}
+/>,
+        ],
+        "className": "movie-container",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "isFav": true,
+            "movie": Object {
+              "movie_id": 1,
+            },
+            "toggleFav": [Function],
+            "userId": 4,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": <div
+              class="movie-card favorite"
+>
+              <img
+                            alt="popular movie"
+                            src="https://image.tmdb.org/t/p/w300/undefined"
+              />
+              <h3 />
+              <h3 />
+              <button>
+                            Favorite
+              </button>
+</div>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <img
+                  alt="popular movie"
+                  src="https://image.tmdb.org/t/p/w300/undefined"
+/>,
+                <h3 />,
+                <h3 />,
+                <button
+                  onClick={[Function]}
+>
+                  Favorite
+</button>,
+              ],
+              "className": "movie-card favorite",
+              "id": undefined,
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": <img
+                  alt="popular movie"
+                  src="https://image.tmdb.org/t/p/w300/undefined"
+/>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "alt": "popular movie",
+                  "src": "https://image.tmdb.org/t/p/w300/undefined",
+                },
+                "ref": null,
+                "rendered": Array [
+                  undefined,
+                ],
+                "type": "img",
+              },
+              Object {
+                "instance": <h3 />,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": undefined,
+                },
+                "ref": null,
+                "rendered": Array [
+                  undefined,
+                ],
+                "type": "h3",
+              },
+              Object {
+                "instance": <h3 />,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": undefined,
+                },
+                "ref": null,
+                "rendered": Array [
+                  undefined,
+                ],
+                "type": "h3",
+              },
+              Object {
+                "instance": <button>
+                  Favorite
+</button>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Favorite",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Array [
+                  "Favorite",
+                ],
+                "type": "button",
+              },
+            ],
+            "type": "div",
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
-        "children": Array [],
-        "className": "movie-container",
+        "addLocalFav": [Function],
+        "deleteLocalFav": [Function],
+        "history": Array [],
+        "movies": Array [
+          Object {
+            "movie_id": 1,
+          },
+        ],
+        "showAllMovies": true,
+        "user": Object {
+          "favorites": Array [
+            1,
+            4,
+          ],
+          "id": 4,
+          "name": "oscar",
+        },
       },
       "ref": null,
-      "rendered": Array [],
-      "type": "div",
+      "rendered": Object {
+        "instance": <div
+          class="movie-container"
+>
+          <div
+                    class="movie-card favorite"
+          >
+                    <img
+                              alt="popular movie"
+                              src="https://image.tmdb.org/t/p/w300/undefined"
+                    />
+                    <h3 />
+                    <h3 />
+                    <button>
+                              Favorite
+                    </button>
+          </div>
+</div>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <Unknown
+              isFav={true}
+              movie={
+                            Object {
+                                          "movie_id": 1,
+                                        }
+              }
+              toggleFav={[Function]}
+              userId={4}
+/>,
+          ],
+          "className": "movie-container",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "isFav": true,
+              "movie": Object {
+                "movie_id": 1,
+              },
+              "toggleFav": [Function],
+              "userId": 4,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": <div
+                class="movie-card favorite"
+>
+                <img
+                                alt="popular movie"
+                                src="https://image.tmdb.org/t/p/w300/undefined"
+                />
+                <h3 />
+                <h3 />
+                <button>
+                                Favorite
+                </button>
+</div>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <img
+                    alt="popular movie"
+                    src="https://image.tmdb.org/t/p/w300/undefined"
+/>,
+                  <h3 />,
+                  <h3 />,
+                  <button
+                    onClick={[Function]}
+>
+                    Favorite
+</button>,
+                ],
+                "className": "movie-card favorite",
+                "id": undefined,
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": <img
+                    alt="popular movie"
+                    src="https://image.tmdb.org/t/p/w300/undefined"
+/>,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "alt": "popular movie",
+                    "src": "https://image.tmdb.org/t/p/w300/undefined",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    undefined,
+                  ],
+                  "type": "img",
+                },
+                Object {
+                  "instance": <h3 />,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": undefined,
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    undefined,
+                  ],
+                  "type": "h3",
+                },
+                Object {
+                  "instance": <h3 />,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": undefined,
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    undefined,
+                  ],
+                  "type": "h3",
+                },
+                Object {
+                  "instance": <button>
+                    Favorite
+</button>,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Favorite",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "Favorite",
+                  ],
+                  "type": "button",
+                },
+              ],
+              "type": "div",
+            },
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {
