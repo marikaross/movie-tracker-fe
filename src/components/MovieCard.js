@@ -13,7 +13,8 @@ export const MovieCard = ({ movie, userId, toggleFav, isFav }) => {
         src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
       />
       <h3>{movie.title}</h3>
-      <h3>Rating: {movie.vote_average}</h3>
+      <h3>Movie Rating: {movie.vote_average}</h3>
+      <h3>Release: {movie.release_date}</h3>
       <button onClick={handleClick}>Favorite</button>
     </div>
   );
