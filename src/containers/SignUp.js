@@ -39,32 +39,36 @@ export class SignUp extends Component {
   handleError = () => {
     if (this.state.hasError) {
       return (
-        <h5 className="user-message">Email is unavailable</h5>
-        )
+        <h5 className="user-message">Try A Diffrent E-Mail</h5>
+      );
     }
   }
 
   render() {
     return (
       <form className='sign-up' onSubmit={this.handleSubmit}>
-        <label htmlFor='name'>Name:</label>
-        <input id='name' name='name' onChange={this.handleChange}/>
-        <label htmlFor='email'>E-Mail:</label>
+        <input 
+          id='name' 
+          name='name' 
+          placeholder='Name'
+          onChange={this.handleChange}
+        />
         <input 
           id= 'email' 
           type='email' 
-          name='email' 
+          name='email'
+          placeholder='E-Mail'
           onChange={this.handleChange}
         />
-        <label htmlFor='password'>Password</label>
         <input 
           id='password' 
           type='password' 
-          name='password' 
+          name='password'
+          placeholder='Password'
           onChange={this.handleChange}
         />
         <button onClick={this.showSignUp}>Sign Up</button>
-        <Link to='/' ><button> Home </button></Link>
+        <Link to='/' ><button>Home</button></Link>
         {this.handleError()}
       </form>
     );

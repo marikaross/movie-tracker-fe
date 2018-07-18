@@ -1,16 +1,49 @@
-.log-out {
+.user-title {
+  background-color: #212121;
+  color: #CFD8DC;
+  font-size: 2em;
+  margin: 0;
+  padding: 1em;
+  border: 0;
+  border-radius: 1em 0 0 1em;
+}
 
+.favorites {
+  font-size: 1.5em;
+  background-color: #006992;
+  color: #CFD8DC;
+  border: 0;
+}
+
+.log-out {
+  font-size: 1.5em;
+  background-color: #27476E;
+  color: #CFD8DC;
+  border: 0;
 }
 
 .sign-in-sign-up {
-  padding: 2em 1em;
+  padding: .5em 0;
   display: flex;
   justify-content: flex-end;
-  background-color: #455A64;
+  background-color: #9E9E9E;
 }
 
-.sign-in-sign-up a {
-  font-size: 1.5em;
-  margin: 0 .3em;
+.login {
+  background-color: #006992;
   color: #CFD8DC;
+  font-size: 2em;
+  margin: 0;
+  padding: 1em;
+  border: 0;
+  border-radius: 1em 0 0 1em;
+}
+
+.signup {
+  background-color: #27476E;
+  color: #CFD8DC;
+  font-size: 2em;
+  margin: 0;
+  padding: 1em;
+  border: 0;
 }

@@ -13,7 +13,7 @@ export const MovieCard = ({ movie, userId, toggleFav, isFav }) => {
         src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
       />
       <h3>{movie.title}</h3>
-      <h3>{movie.vote_average}</h3>
+      <h3>Rating: {movie.vote_average}</h3>
       <button onClick={handleClick}>Favorite</button>
     </div>
   );
@@ -22,5 +22,6 @@ export const MovieCard = ({ movie, userId, toggleFav, isFav }) => {
 MovieCard.propTypes = {
   movie: PropTypes.object,
   userId: PropTypes.number,
-  toggleFav: PropTypes.func
+  toggleFav: PropTypes.func,
+  isFav: PropTypes.bool
 };

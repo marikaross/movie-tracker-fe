@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loginUser, populateUserFavs } from '../actions';
 import { Redirect, withRouter, Link } from 'react-router-dom';
-import SignUp from './SignUp'
+import SignUp from './SignUp';
 import { logIn, getFavorites } from '../api-calls';
 import './SignIn.css';
 
@@ -24,7 +24,6 @@ export class SignIn extends Component {
     });
   }
 
-
   handleSubmit = async (event) => {
     event.preventDefault();
     const user = await logIn(this.state);
@@ -44,7 +43,6 @@ export class SignIn extends Component {
       <h5 className="user-message" >email and password do not match</h5> :
       <div></div>;
   }
-
 
   toLogOut = () => {
    return this.props.user.name ? <Redirect to='/' /> : <div></div> 
@@ -83,11 +81,9 @@ export const mapDispatchToProps = (dispatch) => ({
   populateUserFavs: (id) => dispatch(populateUserFavs(id))
 });
 
-
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignIn));
 
 SignIn.propTypes = {
   login: PropTypes.func,
-  populateUserFavs: PropTypes.func,
-  user: PropTypes.object
+  populateUserFavs: PropTypes.func
 };
