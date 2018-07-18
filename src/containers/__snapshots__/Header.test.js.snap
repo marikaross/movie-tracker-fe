@@ -1,3 +1,275 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`header should match the snapshot 1`] = `undefined`;
+exports[`header should match the snapshot 1`] = `
+ReactWrapper {
+  "length": 1,
+  Symbol(enzyme.__unrendered__): <Unknown
+    logOutUser={[Function]}
+    toggleFilter={[Function]}
+    user={
+        Object {
+            "name": "Ben",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "logOutUser": [Function],
+      "toggleFilter": [Function],
+      "user": Object {
+        "name": "Ben",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": <div>
+        <h4>
+                Welcome 
+                Ben
+                !
+        </h4>
+        <button
+                class="log-out"
+        >
+                Log Out 
+        </button>
+        <button
+                class="favorites"
+        >
+                Show All
+        </button>
+</div>,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h4>
+             Welcome 
+            Ben
+             !
+</h4>,
+          <button
+            className="log-out"
+            onClick={[Function]}
+>
+             Log Out 
+</button>,
+          <button
+            className="favorites"
+            onClick={[Function]}
+>
+            Show All
+</button>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": <h4>
+            Welcome 
+            Ben
+            !
+</h4>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " Welcome ",
+              "Ben",
+              " !",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            " Welcome ",
+            "Ben",
+            " !",
+          ],
+          "type": "h4",
+        },
+        Object {
+          "instance": <button
+            class="log-out"
+>
+            Log Out 
+</button>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": " Log Out ",
+            "className": "log-out",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": Array [
+            " Log Out ",
+          ],
+          "type": "button",
+        },
+        Object {
+          "instance": <button
+            class="favorites"
+>
+            Show All
+</button>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Show All",
+            "className": "favorites",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": Array [
+            "Show All",
+          ],
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "logOutUser": [Function],
+        "toggleFilter": [Function],
+        "user": Object {
+          "name": "Ben",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": <div>
+          <h4>
+                    Welcome 
+                    Ben
+                    !
+          </h4>
+          <button
+                    class="log-out"
+          >
+                    Log Out 
+          </button>
+          <button
+                    class="favorites"
+          >
+                    Show All
+          </button>
+</div>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <h4>
+               Welcome 
+              Ben
+               !
+</h4>,
+            <button
+              className="log-out"
+              onClick={[Function]}
+>
+               Log Out 
+</button>,
+            <button
+              className="favorites"
+              onClick={[Function]}
+>
+              Show All
+</button>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": <h4>
+              Welcome 
+              Ben
+              !
+</h4>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                " Welcome ",
+                "Ben",
+                " !",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              " Welcome ",
+              "Ben",
+              " !",
+            ],
+            "type": "h4",
+          },
+          Object {
+            "instance": <button
+              class="log-out"
+>
+              Log Out 
+</button>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": " Log Out ",
+              "className": "log-out",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Array [
+              " Log Out ",
+            ],
+            "type": "button",
+          },
+          Object {
+            "instance": <button
+              class="favorites"
+>
+              Show All
+</button>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Show All",
+              "className": "favorites",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Show All",
+            ],
+            "type": "button",
+          },
+        ],
+        "type": "div",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

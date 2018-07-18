@@ -8,6 +8,7 @@ import SignUp from './SignUp.js';
 import { logOutUser, toggleFilter } from '../actions';
 
 export const Header = (props) => {
+  console.log(props)
   return (
     props.user.name ?
       <div>
