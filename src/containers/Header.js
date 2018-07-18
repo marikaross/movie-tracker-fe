@@ -29,12 +29,12 @@ export const Header = (props) => {
 
 
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   user: state.user,
   showAllMovies: state.showAllMovies
 });
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   logOutUser: () => dispatch(logOutUser()),
   toggleFilter: () => dispatch(toggleFilter())
 }) 
