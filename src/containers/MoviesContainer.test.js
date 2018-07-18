@@ -78,5 +78,66 @@ describe('MoviesContainer', () => {
     wrapper.find('button').simulate('click')
     expect(postFavorite).toBeCalled();
   })
-   
+
+  describe('mapStateToProps', () => {
+    it('returns an object with the expected props', () => {
+      const mockState= {
+        movies: mockMovies,
+        showAllMovies: mockShowAllMovies,
+        user: mockUser,
+        deleteLocalFav: mockDeleteLocalFav,
+        addLocalFav: mockAddLocalFav,
+        history: mockHistory
+      }
+
+      const expectedProps = {
+        movies: mockMovies,
+        showAllMovies: mockShowAllMovies,
+        user: mockUser
+      }
+      const mappedProps = mapStateToProps(mockState);
+      expect(mappedProps).toEqual(expectedProps)
+
+    })
+  })
+
+  it()
+
+  describe('mapDispatchToProps', () => {
+    it('calls dipatch with addLocalFav', () => {
+      const mockState= {
+        movies: mockMovies,
+        showAllMovies: mockShowAllMovies,
+        user: mockUser,
+        deleteLocalFav: mockDeleteLocalFav,
+        addLocalFav: mockAddLocalFav,
+        history: mockHistory
+      }
+
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      const actionToDispatch = actions.addLocalFav(mockMovies[0]);
+      mappedProps.addLocalFav(mockMovies[0])
+
+      expect(mockDispatch).toBeCalledWith(actionToDispatch)
+    })
+
+    it('calls dipatch with deleteLocalFav', () => {
+      const mockState= {
+        movies: mockMovies,
+        showAllMovies: mockShowAllMovies,
+        user: mockUser,
+        deleteLocalFav: mockDeleteLocalFav,
+        addLocalFav: mockAddLocalFav,
+        history: mockHistory
+      }
+
+      const mockDispatch = jest.fn();
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      const actionToDispatch = actions.deleteLocalFav(mockMovies[0]);
+      mappedProps.deleteLocalFav(mockMovies[0])
+
+      expect(mockDispatch).toBeCalledWith(actionToDispatch)
+    })
+  })
 })
