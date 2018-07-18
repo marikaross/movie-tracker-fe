@@ -95,8 +95,15 @@ describe ('signUp', () => {
   });
 
   it('should be called with the correct parameters', async () => {
+    let mockOptionsObject2 = {
+      method: 'POST',
+      body: JSON.stringify({}),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }
     await signUp(url, mockOptionsObject);
-    expect(window.fetch).toHaveBeenCalledWith(url, mockOptionsObject);
+    expect(window.fetch).toHaveBeenCalledWith(url, mockOptionsObject2);
   });
 
   it('should return the correct data as a response object', async () => {
@@ -182,9 +189,10 @@ describe('getFavorites', () => {
     expect(window.fetch).toHaveBeenCalledWith(url)
   });
 
-  it('should return the correct data', () => {
+  it('should return the correct data', async () => {
     const expected = mockFavorites;
-    const result = getFavorites(1);
+    const result = await getFavorites(1);
+
     expect(result).toEqual(expected);
   });
 
