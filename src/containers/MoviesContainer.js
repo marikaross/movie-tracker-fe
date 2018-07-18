@@ -23,7 +23,6 @@ export const MoviesContainer = (props) => {
     }
   };
 
-
   const isDuplicate = (movieId) => {
     return props.user.favorites.find(favoriteId => favoriteId === movieId);
   };
@@ -31,7 +30,7 @@ export const MoviesContainer = (props) => {
   const isFavorite = (id) => {
     return props.user.favorites ? 
     props.user.favorites.includes(id) : null;
-  }
+  };
   
   const cards = props.movies.map(movie => (
     <MovieCard
@@ -53,9 +52,9 @@ export const MoviesContainer = (props) => {
           toggleFav={toggleFav}
           isFav={true}
         />
-      )
+      );
     }
-  })
+  });
 
   return (
     <div className='movie-container'>
