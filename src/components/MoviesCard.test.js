@@ -7,7 +7,7 @@ describe('MovieCard', () => {
     const mockMovieCard = [{
       title: "Legally Blonde",
       vote_average: 100}];
-    const wrapper = shallow(<MovieCard />);
+    const wrapper = shallow(<MovieCard movie={{id:2}}/>);
     expect(wrapper).toMatchSnapshot();
   });
   
