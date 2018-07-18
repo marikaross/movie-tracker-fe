@@ -6,22 +6,27 @@
 
 .movie-container div {
   padding: 1em;
-  background-color: #607D8B;
-  color: #212121;
-  border: 2px solid #212121;
-  border-radius: 20px;
+  background-color: #006992;
+  color: #CFD8DC;
+  border-radius: 1em;
+  font-family: sans-serif;
   margin: 1em;
 }
 
+.movie-container h3 {
+  margin: .5em 0;
+}
+
 .movie-container div button {
-  background-color: #009688;
-  border: 0;
-  border-radius: 20px;
+  background-color: #212121;
+  border: 1px solid darkorange;
+  border-radius: 1em;
   font-size: 1em;
-  color: #FFFFFF;
+  color: #CFD8DC;
   padding: .5em 1em;
+  font-family: sans-serif;
 }
 
 .favorite {
-  box-shadow: 5px 5px chartreuse;
+  box-shadow: 5px 5px darkorange;
 }

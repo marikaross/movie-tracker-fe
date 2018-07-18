@@ -1,0 +1,35 @@
+.sign-up {
+  position: absolute;
+  display: flex;
+  top: 30%;
+  left: 35%;
+  padding: 1em;
+  border-radius: 1em;
+  flex-direction: column;
+  background-color: rgba(33, 33, 33, .9);
+  border: 1px solid darkorange;
+}
+
+.sign-up input {
+  padding: .3em 1em;
+  font-size: .7em;
+  margin: .2em 0;
+  border-radius: 8px;
+  border: 0;
+  font-size: 1.5em;
+}
+
+.sign-up button {
+  width: 20em;
+  border: 0;
+  border-radius: 8px;
+  margin: .2em 0;
+  font-size: 1.5em;
+  font-family: sans-serif;
+}
+
+.user-message {
+  font-size: 1.5em;
+  margin: 0 .3em;
+  color: #CFD8DC;
+}
