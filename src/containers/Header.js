@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, NavLink, Route, withRouter } from 'react-router-dom';
+import {Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Header.css';

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signUp, logIn } from '../api-calls';
+import { signUp } from '../api-calls';
 import { loginUser } from '../actions';
 import PropTypes from 'prop-types';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './SignUp.css';
 
 export class SignUp extends Component {
