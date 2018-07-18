@@ -19,13 +19,10 @@ export const MoviesContainer = (props) => {
     } else { 
       const newFavorite = {user_id: userId, ...movie};
       const newFavId = await postFavorite(newFavorite);
-      addFav(movie.movie_id);
+      props.addLocalFav(movie.movie_id);
     }
   };
 
-  const addFav = (id) => {
-    props.addLocalFav(id);
-  };
 
   const isDuplicate = (movieId) => {
     return props.user.favorites.find(favoriteId => favoriteId === movieId);

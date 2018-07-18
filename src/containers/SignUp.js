@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signUp } from '../api-calls';
+import { signUp, logIn } from '../api-calls';
 import { loginUser } from '../actions';
 import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
@@ -28,8 +28,8 @@ export class SignUp extends Component {
     event.preventDefault();
     const reply = await signUp(this.state);
     if (reply.id) {
-      this.props.login(this.state); 
-      this.setState({ hasError: false });
+      this.setState({id: reply.id, favorites: [], hasError: false})
+      this.props.login(this.state);    
       this.props.history.push('/')
     } else {
       this.setState({ hasError: true });

@@ -13,15 +13,6 @@ describe('App', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
-  describe('componentDidMount', () => {
-    it('calls props.addRecentMovies with the correct parameters', async () => {
-      apiCalls.getMovies = jest.fn().mockImplementation(() => Promise.resolve({results: ['movies']}))
-      moviesCleaner = jest.fn().mockImplementation(() => ['movies'])
-      const mockAddRecentMovies = jest.fn()
-      const wrapper = await shallow(<App addRecentMovies={mockAddRecentMovies} />);
-      expect(wrapper.instance().props.addRecentMovies).toHaveBeenCalledWith(['movies'])
-    })
-  })
 
   describe('mapDispatchtoProps', () => {
     it('calls dispatch with the correct aruguments', () => {
