@@ -5,12 +5,12 @@
 }
 
 .movie-container div {
-  padding: 1em;
   background-color: #006992;
-  color: #CFD8DC;
   border-radius: 1em;
+  color: #CFD8DC;
   font-family: sans-serif;
   margin: 1em;
+  padding: 1em;
 }
 
 .movie-container h3 {
@@ -21,10 +21,10 @@
   background-color: #212121;
   border: 1px solid darkorange;
   border-radius: 1em;
-  font-size: 1em;
   color: #CFD8DC;
-  padding: .5em 1em;
+  font-size: 1em;
   font-family: sans-serif;
+  padding: .5em 1em;
 }
 
 .favorite {
